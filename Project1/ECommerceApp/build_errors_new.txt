@@ -1,0 +1,35 @@
+﻿  Determining projects to restore...
+  All projects are up-to-date for restore.
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(68,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(69,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(70,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(71,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(72,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\CartController.cs(25,42): warning CS8604: Possible null reference argument for parameter 'userId' in 'Task<Cart> CartController.GetOrCreateCart(string userId)'. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Views\Order\Checkout.cshtml(6,26): warning CS8600: Converting null literal or possible null value to non-nullable type. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\CartController.cs(39,42): warning CS8604: Possible null reference argument for parameter 'userId' in 'Task<Cart> CartController.GetOrCreateCart(string userId)'. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(34,35): warning CS8602: Dereference of a possibly null reference. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(53,22): warning CS8601: Possible null reference assignment. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(56,52): warning CS8602: Dereference of a possibly null reference. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(61,29): warning CS8602: Dereference of a possibly null reference. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(70,13): warning CS8602: Dereference of a possibly null reference. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+
+Build FAILED.
+
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\CartController.cs(25,42): warning CS8604: Possible null reference argument for parameter 'userId' in 'Task<Cart> CartController.GetOrCreateCart(string userId)'. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Views\Order\Checkout.cshtml(6,26): warning CS8600: Converting null literal or possible null value to non-nullable type. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\CartController.cs(39,42): warning CS8604: Possible null reference argument for parameter 'userId' in 'Task<Cart> CartController.GetOrCreateCart(string userId)'. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(34,35): warning CS8602: Dereference of a possibly null reference. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(53,22): warning CS8601: Possible null reference assignment. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(56,52): warning CS8602: Dereference of a possibly null reference. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(61,29): warning CS8602: Dereference of a possibly null reference. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Controllers\OrderController.cs(70,13): warning CS8602: Dereference of a possibly null reference. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(68,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(69,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(70,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(71,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+D:\Baru\ECommerceApp\ECommerceApp\Data\ApplicationDbContext.cs(72,21): error CS9035: Required member 'Product.SellerId' must be set in the object initializer or attribute constructor. [D:\Baru\ECommerceApp\ECommerceApp\ECommerceApp.csproj]
+    8 Warning(s)
+    5 Error(s)
+
+Time Elapsed 00:00:02.09

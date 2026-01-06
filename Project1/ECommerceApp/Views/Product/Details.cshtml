@@ -1,0 +1,102 @@
+@model ECommerceApp.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+        </ol>
+    </nav>
+
+    <div class="row gx-5">
+        <div class="col-md-6 mb-4">
+             <div class="bg-light rounded-lg shadow-sm d-flex align-items-center justify-content-center" style="height: 500px; overflow: hidden;">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                        <img src="@Model.ImageUrl" class="img-fluid w-100" style="object-fit: contain; max-height: 100%;" alt="@Model.Name">
+                }
+                else
+                {
+                    <i class="fas fa-box fa-5x text-secondary"></i>
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1 class="display-5 fw-bold mb-2">@Model.Name</h1>
+            <div class="d-flex align-items-center mb-3">
+                 <div class="text-warning me-2 small">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <span class="text-muted">(120 Reviews)</span>
+            </div>
+            <h2 class="text-primary fw-bold mb-4">Rp @Model.Price.ToString("N0")</h2>
+            
+            <p class="lead text-muted mb-4">@Model.Description</p>
+            
+            <div class="d-flex align-items-center mb-4">
+                 <span class="me-3 fw-bold">Availability:</span>
+                 @if(Model.Stock > 0)
+                {
+                    <span class="badge bg-success">In Stock (@Model.Stock)</span>
+                }
+                else
+                {
+                     <span class="badge bg-danger">Out of Stock</span>
+                }
+            </div>
+            
+            <div class="d-flex align-items-center mb-4">
+                 <span class="me-3 fw-bold">Seller:</span>
+                 <span class="text-muted"><i class="fas fa-store me-2"></i>@Model.Seller?.FirstName @Model.Seller?.LastName</span>
+            </div>
+
+            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="mb-5">
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="quantity" class="col-form-label fw-bold">Quantity:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" max="@Model.Stock" style="width: 80px;">
+                    </div>
+                    <div class="col-auto">
+                         <button type="submit" class="btn btn-primary btn-lg px-5 shadow-md" @(Model.Stock == 0 ? "disabled" : "")>
+                            <i class="fas fa-cart-plus me-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="border-top pt-4">
+                 <div class="row text-center">
+                    <div class="col-4">
+                        <div class="p-3">
+                            <i class="fas fa-truck fa-2x text-muted mb-2"></i>
+                            <h6 class="fw-bold">Free Delivery</h6>
+                        </div>
+                    </div>
+                     <div class="col-4">
+                        <div class="p-3">
+                            <i class="fas fa-shield-alt fa-2x text-muted mb-2"></i>
+                            <h6 class="fw-bold">Secure Payment</h6>
+                        </div>
+                    </div>
+                     <div class="col-4">
+                        <div class="p-3">
+                            <i class="fas fa-undo fa-2x text-muted mb-2"></i>
+                            <h6 class="fw-bold">Free Returns</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

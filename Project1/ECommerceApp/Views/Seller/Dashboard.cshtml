@@ -1,0 +1,84 @@
+@model IEnumerable<ECommerceApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Seller Dashboard";
+}
+
+<div class="container my-5">
+    <h1 class="display-5 fw-bold mb-4">Seller Dashboard</h1>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 bg-primary text-white">
+                <div class="card-body">
+                    <h3 class="mb-0">@ViewBag.ProductCount</h3>
+                    <p class="mb-0">Total Products</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 bg-success text-white">
+                <div class="card-body">
+                    <h3 class="mb-0">@ViewBag.TotalOrders</h3>
+                    <p class="mb-0">Total Orders</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <a asp-action="CreateProduct" class="card shadow-sm border-0 bg-warning text-decoration-none h-100 d-flex align-items-center justify-content-center" style="min-height: 100px;">
+                <div class="card-body text-center">
+                    <i class="fas fa-plus fa-2x text-white mb-2"></i>
+                    <p class="mb-0 text-white fw-bold">Add New Product</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Recent Products</h3>
+        <a asp-action="Products" class="btn btn-outline-primary">View All Products</a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td><img src="@product.ImageUrl" class="rounded" style="width: 50px; height: 50px; object-fit: cover;" onerror="this.src='/images/placeholder.jpg'" /></td>
+                            <td>@product.Name</td>
+                            <td>@product.Category?.Name</td>
+                            <td>Rp @product.Price.ToString("N0")</td>
+                            <td>@product.Stock</td>
+                            <td><span class="badge bg-@(product.IsActive ? "success" : "danger")">@(product.IsActive ? "Active" : "Inactive")</span></td>
+                            <td>
+                                <a asp-action="EditProduct" asp-route-id="@product.Id" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-box-open fa-4x text-muted mb-3"></i>
+            <h4 class="text-muted">No products yet</h4>
+            <a asp-action="CreateProduct" class="btn btn-primary mt-3">Create Your First Product</a>
+        </div>
+    }
+</div>
