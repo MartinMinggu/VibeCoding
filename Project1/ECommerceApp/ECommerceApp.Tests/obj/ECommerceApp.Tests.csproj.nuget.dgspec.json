@@ -4,14 +4,83 @@
     "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Tests\\ECommerceApp.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.csproj": {
+    "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Application\\ECommerceApp.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.csproj",
-        "projectName": "ECommerceApp",
-        "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.csproj",
+        "projectUniqueName": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Application\\ECommerceApp.Application.csproj",
+        "projectName": "ECommerceApp.Application",
+        "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Application\\ECommerceApp.Application.csproj",
         "packagesPath": "C:\\Users\\1334\\.nuget\\packages\\",
-        "outputPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\obj\\",
+        "outputPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\1334\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Domain\\ECommerceApp.Domain.csproj": {
+                "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Domain\\ECommerceApp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Domain\\ECommerceApp.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Domain\\ECommerceApp.Domain.csproj",
+        "projectName": "ECommerceApp.Domain",
+        "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Domain\\ECommerceApp.Domain.csproj",
+        "packagesPath": "C:\\Users\\1334\\.nuget\\packages\\",
+        "outputPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,13 +119,89 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Infrastructure\\ECommerceApp.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Infrastructure\\ECommerceApp.Infrastructure.csproj",
+        "projectName": "ECommerceApp.Infrastructure",
+        "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Infrastructure\\ECommerceApp.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\1334\\.nuget\\packages\\",
+        "outputPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\1334\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Application\\ECommerceApp.Application.csproj": {
+                "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Application\\ECommerceApp.Application.csproj"
+              },
+              "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Domain\\ECommerceApp.Domain.csproj": {
+                "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Domain\\ECommerceApp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
@@ -83,9 +228,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -122,8 +264,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.csproj": {
-                "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.csproj"
+              "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Web\\ECommerceApp.Web.csproj": {
+                "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Web\\ECommerceApp.Web.csproj"
               }
             }
           }
@@ -185,6 +327,103 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Web\\ECommerceApp.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Web\\ECommerceApp.Web.csproj",
+        "projectName": "ECommerceApp.Web",
+        "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Web\\ECommerceApp.Web.csproj",
+        "packagesPath": "C:\\Users\\1334\\.nuget\\packages\\",
+        "outputPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\1334\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Application\\ECommerceApp.Application.csproj": {
+                "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Application\\ECommerceApp.Application.csproj"
+              },
+              "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Infrastructure\\ECommerceApp.Infrastructure.csproj": {
+                "projectPath": "D:\\Baru\\VibeCoding\\Project1\\ECommerceApp\\ECommerceApp.Infrastructure\\ECommerceApp.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

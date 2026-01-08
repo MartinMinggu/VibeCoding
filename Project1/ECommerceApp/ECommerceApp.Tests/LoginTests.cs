@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ECommerceApp.Data;
-using ECommerceApp.Models;
-using Microsoft.AspNetCore.Identity;
 using Xunit;
+using ECommerceApp.Infrastructure.Data;
+using ECommerceApp.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace ECommerceApp.Tests;
 
