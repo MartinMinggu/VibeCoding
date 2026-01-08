@@ -1,4 +1,4 @@
-@model ECommerceApp.Models.Product
+@model ECommerceApp.DTOs.ProductDetailsDto
 
 @{
     ViewData["Title"] = Model.Name;
@@ -55,7 +55,7 @@
             
             <div class="d-flex align-items-center mb-4">
                  <span class="me-3 fw-bold">Seller:</span>
-                 <span class="text-muted"><i class="fas fa-store me-2"></i>@Model.Seller?.FirstName @Model.Seller?.LastName</span>
+                 <span class="text-muted"><i class="fas fa-store me-2"></i>@Model.SellerName</span>
             </div>
 
             <form asp-controller="Cart" asp-action="AddToCart" method="post" class="mb-5">

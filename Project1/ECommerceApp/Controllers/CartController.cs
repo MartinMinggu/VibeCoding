@@ -1,66 +1,48 @@
-using ECommerceApp.Data;
-using ECommerceApp.Models;
+using ECommerceApp.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using ECommerceApp.Models;
 
 namespace ECommerceApp.Controllers;
 
 [Authorize]
 public class CartController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ICartService _cartService;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public CartController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+    public CartController(ICartService cartService, UserManager<ApplicationUser> userManager)
     {
-        _context = context;
+        _cartService = cartService;
         _userManager = userManager;
     }
 
     public async Task<IActionResult> Index()
     {
         var userId = _userManager.GetUserId(User);
-        var cart = await GetOrCreateCart(userId);
+        if (userId == null)
+            return RedirectToAction("Login", "Account");
 
-        var cartItems = await _context.CartItems
-            .Include(ci => ci.Product)
-            .Where(ci => ci.CartId == cart.Id)
-            .ToListAsync();
-
-        return View(cartItems);
+        var cart = await _cartService.GetUserCartAsync(userId);
+        return View(cart);
     }
 
     [HttpPost]
     public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
     {
         var userId = _userManager.GetUserId(User);
-        var cart = await GetOrCreateCart(userId);
+        if (userId == null)
+            return RedirectToAction("Login", "Account");
 
-        var product = await _context.Products.FindAsync(productId);
-        if (product == null || !product.IsActive || product.Stock < quantity)
-            return BadRequest("Product not available");
-
-        var cartItem = await _context.CartItems
-            .FirstOrDefaultAsync(ci => ci.CartId == cart.Id && ci.ProductId == productId);
-
-        if (cartItem != null)
+        var success = await _cartService.AddToCartAsync(userId, productId, quantity);
+        
+        if (!success)
         {
-            cartItem.Quantity += quantity;
-        }
-        else
-        {
-            cartItem = new CartItem
-            {
-                CartId = cart.Id,
-                ProductId = productId,
-                Quantity = quantity
-            };
-            _context.CartItems.Add(cartItem);
+            TempData["Error"] = "Product not available or insufficient stock";
+            return RedirectToAction("Details", "Product", new { id = productId });
         }
 
-        await _context.SaveChangesAsync();
         TempData["Success"] = "Product added to cart!";
         return RedirectToAction("Index");
     }
@@ -68,48 +50,26 @@ public class CartController : Controller
     [HttpPost]
     public async Task<IActionResult> UpdateQuantity(int id, int quantity)
     {
-        var cartItem = await _context.CartItems.FindAsync(id);
-        if (cartItem == null)
-            return NotFound();
+        var userId = _userManager.GetUserId(User);
+        if (userId == null)
+            return RedirectToAction("Login", "Account");
 
-        if (quantity <= 0)
-        {
-            _context.CartItems.Remove(cartItem);
-        }
-        else
-        {
-            cartItem.Quantity = quantity;
-        }
+        var success = await _cartService.UpdateCartItemQuantityAsync(id, quantity, userId);
+        
+        if (!success)
+            TempData["Error"] = "Unable to update quantity";
 
-        await _context.SaveChangesAsync();
         return RedirectToAction("Index");
     }
 
     [HttpPost]
     public async Task<IActionResult> RemoveFromCart(int id)
     {
-        var cartItem = await _context.CartItems.FindAsync(id);
-        if (cartItem != null)
-        {
-            _context.CartItems.Remove(cartItem);
-            await _context.SaveChangesAsync();
-        }
+        var userId = _userManager.GetUserId(User);
+        if (userId == null)
+            return RedirectToAction("Login", "Account");
 
+        await _cartService.RemoveFromCartAsync(id, userId);
         return RedirectToAction("Index");
-    }
-
-    private async Task<Cart> GetOrCreateCart(string userId)
-    {
-        var cart = await _context.Carts
-            .FirstOrDefaultAsync(c => c.UserId == userId);
-
-        if (cart == null)
-        {
-            cart = new Cart { UserId = userId };
-            _context.Carts.Add(cart);
-            await _context.SaveChangesAsync();
-        }
-
-        return cart;
     }
 }

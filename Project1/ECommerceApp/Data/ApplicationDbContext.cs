@@ -18,6 +18,7 @@ namespace ECommerceApp.Data
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Lookup> Lookups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -82,6 +83,23 @@ namespace ECommerceApp.Data
             builder.Entity<OrderItem>()
                 .Property(oi => oi.UnitPrice)
                 .HasPrecision(18, 2);
+
+            // Configure Lookup entity
+            builder.Entity<Lookup>()
+                .HasIndex(l => l.Key)
+                .IsUnique();
+
+            // Seed lookup data for application configuration
+            builder.Entity<Lookup>().HasData(
+                new Lookup { Id = 1, Key = "SiteName", Value = "ECommerce Store", Description = "Application name", Category = "General", IsActive = true, CreatedAt = DateTime.Now },
+                new Lookup { Id = 2, Key = "AdminEmail", Value = "admin@ecommerce.com", Description = "Administrator email", Category = "General", IsActive = true, CreatedAt = DateTime.Now },
+                new Lookup { Id = 3, Key = "Currency", Value = "USD", Description = "Default currency", Category = "Payment", IsActive = true, CreatedAt = DateTime.Now },
+                new Lookup { Id = 4, Key = "TaxRate", Value = "0.10", Description = "Tax rate (10%)", Category = "Payment", IsActive = true, CreatedAt = DateTime.Now },
+                new Lookup { Id = 5, Key = "ShippingFee", Value = "5.00", Description = "Standard shipping fee", Category = "Shipping", IsActive = true, CreatedAt = DateTime.Now },
+                new Lookup { Id = 6, Key = "FreeShippingThreshold", Value = "50.00", Description = "Free shipping minimum order", Category = "Shipping", IsActive = true, CreatedAt = DateTime.Now },
+                new Lookup { Id = 7, Key = "MaxCartItems", Value = "50", Description = "Maximum items in cart", Category = "Cart", IsActive = true, CreatedAt = DateTime.Now },
+                new Lookup { Id = 8, Key = "ProductsPerPage", Value = "12", Description = "Products displayed per page", Category = "Display", IsActive = true, CreatedAt = DateTime.Now }
+            );
         }
     }
 }

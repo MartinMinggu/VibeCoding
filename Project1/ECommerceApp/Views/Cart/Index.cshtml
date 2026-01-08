@@ -1,27 +1,27 @@
-@model IEnumerable<ECommerceApp.Models.CartItem>
+@model ECommerceApp.DTOs.CartDto
 
 @{
     ViewData["Title"] = "Shopping Cart";
-    decimal total = Model?.Sum(i => i.Quantity * i.Product?.Price ?? 0) ?? 0;
+    decimal total = Model?.TotalAmount ?? 0;
 }
 
 <div class="container my-5">
     <h1 class="display-5 fw-bold mb-4">Your Shopping Cart</h1>
 
-    @if (Model != null && Model.Any())
+    @if (Model != null && Model.Items != null && Model.Items.Any())
     {
         <div class="row">
             <div class="col-lg-8">
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-body p-4">
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Items)
                         {
                             <div class="row align-items-center mb-3">
                                 <div class="col-md-2">
                                     <div class="bg-light rounded p-2 d-flex align-items-center justify-content-center" style="height: 80px; width: 80px;">
-                                        @if (!string.IsNullOrEmpty(item.Product?.ImageUrl))
+                                        @if (!string.IsNullOrEmpty(item.ProductImageUrl))
                                         {
-                                            <img src="@item.Product.ImageUrl" class="img-fluid" style="max-height: 100%;" alt="@item.Product.Name">
+                                            <img src="@item.ProductImageUrl" class="img-fluid" style="max-height: 100%;" alt="@item.ProductName">
                                         }
                                         else
                                         {
@@ -30,18 +30,17 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <h5 class="mb-1"><a asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId" class="text-decoration-none text-dark">@item.Product?.Name</a></h5>
-                                    <p class="text-muted small mb-0">@item.Product?.Category?.Name</p>
+                                    <h5 class="mb-1"><a asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId" class="text-decoration-none text-dark">@item.ProductName</a></h5>
                                 </div>
                                 <div class="col-md-3">
                                     <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center">
                                         <input type="hidden" name="id" value="@item.Id" />
-                                        <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm text-center me-2" style="width: 60px;">
+                                        <input type="number" name="quantity" value="@item.Quantity" min="1" max="@item.AvailableStock" class="form-control form-control-sm text-center me-2" style="width: 60px;">
                                         <button type="submit" class="btn btn-link text-primary p-0" title="Update"><i class="fas fa-sync-alt"></i></button>
                                     </form>
                                 </div>
                                 <div class="col-md-2 text-end">
-                                    <span class="fw-bold">Rp @((item.Quantity * (item.Product?.Price ?? 0)).ToString("N0"))</span>
+                                    <span class="fw-bold">Rp @item.Subtotal.ToString("N0")</span>
                                 </div>
                                 <div class="col-md-1 text-end">
                                     <form asp-action="RemoveFromCart" method="post">
@@ -50,7 +49,7 @@
                                     </form>
                                 </div>
                             </div>
-                            @if (item != Model.Last())
+                            @if (item != Model.Items.Last())
                             {
                                 <hr class="my-3">
                             }

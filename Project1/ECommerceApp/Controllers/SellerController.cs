@@ -1,21 +1,30 @@
-using ECommerceApp.Data;
-using ECommerceApp.Models;
+using ECommerceApp.Services;
+using ECommerceApp.Repositories;
+using ECommerceApp.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using ECommerceApp.Models;
 
 namespace ECommerceApp.Controllers;
 
 [Authorize]
 public class SellerController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IProductService _productService;
+    private readonly IOrderService _orderService;
+    private readonly ICategoryRepository _categoryRepository;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public SellerController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+    public SellerController(
+        IProductService productService,
+        IOrderService orderService,
+        ICategoryRepository categoryRepository,
+        UserManager<ApplicationUser> userManager)
     {
-        _context = context;
+        _productService = productService;
+        _orderService = orderService;
+        _categoryRepository = categoryRepository;
         _userManager = userManager;
     }
 
@@ -25,23 +34,13 @@ public class SellerController : Controller
         if (user == null || !user.IsSeller)
             return RedirectToAction("Index", "Home");
 
-        var userId = user.Id;
-        ViewBag.ProductCount = await _context.Products.CountAsync(p => p.SellerId == userId);
-        ViewBag.TotalOrders = await _context.OrderItems
-            .Include(oi => oi.Product)
-            .Where(oi => oi.Product != null && oi.Product.SellerId == userId)
-            .Select(oi => oi.OrderId)
-            .Distinct()
-            .CountAsync();
+        ViewBag.ProductCount = await _productService.GetProductCountBySellerAsync(user.Id);
+        ViewBag.TotalOrders = await _orderService.GetOrderCountBySellerAsync(user.Id);
 
-        var products = await _context.Products
-            .Include(p => p.Category)
-            .Where(p => p.SellerId == userId)
-            .OrderByDescending(p => p.CreatedAt)
-            .Take(5)
-            .ToListAsync();
+        var products = await _productService.GetSellerProductsAsync(user.Id);
+        var recentProducts = products.OrderByDescending(p => p.CreatedAt).Take(5);
 
-        return View(products);
+        return View(recentProducts);
     }
 
     public async Task<IActionResult> Products()
@@ -50,12 +49,7 @@ public class SellerController : Controller
         if (user == null || !user.IsSeller)
             return RedirectToAction("Index", "Home");
 
-        var products = await _context.Products
-            .Include(p => p.Category)
-            .Where(p => p.SellerId == user.Id)
-            .OrderByDescending(p => p.CreatedAt)
-            .ToListAsync();
-
+        var products = await _productService.GetSellerProductsAsync(user.Id);
         return View(products);
     }
 
@@ -65,23 +59,18 @@ public class SellerController : Controller
         if (user == null || !user.IsSeller)
             return RedirectToAction("Index", "Home");
 
-        ViewBag.Categories = await _context.Categories.ToListAsync();
+        ViewBag.Categories = await _categoryRepository.GetAllAsync();
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateProduct(Product product)
+    public async Task<IActionResult> CreateProduct(CreateProductDto dto)
     {
         var user = await _userManager.GetUserAsync(User);
         if (user == null || !user.IsSeller)
             return RedirectToAction("Index", "Home");
 
-        product.SellerId = user.Id;
-        product.CreatedAt = DateTime.Now;
-        product.IsActive = true;
-
-        _context.Products.Add(product);
-        await _context.SaveChangesAsync();
+        await _productService.CreateProductAsync(dto, user.Id);
         TempData["Success"] = "Product created successfully!";
         return RedirectToAction("Products");
     }
@@ -92,38 +81,25 @@ public class SellerController : Controller
         if (user == null || !user.IsSeller)
             return RedirectToAction("Index", "Home");
 
-        var product = await _context.Products
-            .FirstOrDefaultAsync(p => p.Id == id && p.SellerId == user.Id);
-
-        if (product == null)
+        var product = await _productService.GetProductDetailsAsync(id);
+        if (product == null || product.SellerId != user.Id)
             return NotFound();
 
-        ViewBag.Categories = await _context.Categories.ToListAsync();
+        ViewBag.Categories = await _categoryRepository.GetAllAsync();
         return View(product);
     }
 
     [HttpPost]
-    public async Task<IActionResult> EditProduct(Product product)
+    public async Task<IActionResult> EditProduct(int id, UpdateProductDto dto)
     {
         var user = await _userManager.GetUserAsync(User);
         if (user == null || !user.IsSeller)
             return RedirectToAction("Index", "Home");
 
-        var existingProduct = await _context.Products
-            .FirstOrDefaultAsync(p => p.Id == product.Id && p.SellerId == user.Id);
-
-        if (existingProduct == null)
+        var success = await _productService.UpdateProductAsync(id, dto, user.Id);
+        if (!success)
             return NotFound();
 
-        existingProduct.Name = product.Name;
-        existingProduct.Description = product.Description;
-        existingProduct.Price = product.Price;
-        existingProduct.Stock = product.Stock;
-        existingProduct.ImageUrl = product.ImageUrl;
-        existingProduct.CategoryId = product.CategoryId;
-        existingProduct.IsActive = product.IsActive;
-
-        await _context.SaveChangesAsync();
         TempData["Success"] = "Product updated successfully!";
         return RedirectToAction("Products");
     }
@@ -134,14 +110,7 @@ public class SellerController : Controller
         if (user == null || !user.IsSeller)
             return RedirectToAction("Index", "Home");
 
-        var orders = await _context.OrderItems
-            .Include(oi => oi.Order)
-            .ThenInclude(o => o != null ? o.User : null)
-            .Include(oi => oi.Product)
-            .Where(oi => oi.Product != null && oi.Product.SellerId == user.Id)
-            .OrderByDescending(oi => oi.Order != null ? oi.Order.OrderDate : DateTime.MinValue)
-            .ToListAsync();
-
+        var orders = await _orderService.GetSellerOrdersAsync(user.Id);
         return View(orders);
     }
 
@@ -152,21 +121,9 @@ public class SellerController : Controller
         if (user == null || !user.IsSeller)
             return RedirectToAction("Index", "Home");
 
-        var order = await _context.Orders
-            .Include(o => o.OrderItems)
-            .ThenInclude(oi => oi.Product)
-            .FirstOrDefaultAsync(o => o.Id == orderId);
-
-        if (order == null)
+        var success = await _orderService.UpdateOrderStatusAsync(orderId, status, user.Id);
+        if (!success)
             return NotFound();
-
-        // Verify seller owns at least one product in this order
-        var hasSellerProduct = order.OrderItems.Any(oi => oi.Product != null && oi.Product.SellerId == user.Id);
-        if (!hasSellerProduct)
-            return Forbid();
-
-        order.Status = status;
-        await _context.SaveChangesAsync();
 
         TempData["Success"] = $"Order status updated to {status}";
         return RedirectToAction("Orders");

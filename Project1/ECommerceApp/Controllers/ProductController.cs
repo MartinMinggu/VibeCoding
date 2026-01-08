@@ -1,34 +1,24 @@
-using ECommerceApp.Data;
-using ECommerceApp.Models;
+using ECommerceApp.Services;
+using ECommerceApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceApp.Controllers;
 
 public class ProductController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IProductService _productService;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public ProductController(ApplicationDbContext context)
+    public ProductController(IProductService productService, ICategoryRepository categoryRepository)
     {
-        _context = context;
+        _productService = productService;
+        _categoryRepository = categoryRepository;
     }
 
     public async Task<IActionResult> Index(int? categoryId, string search)
     {
-        var query = _context.Products
-            .Include(p => p.Category)
-            .Include(p => p.Seller)
-            .Where(p => p.IsActive);
-
-        if (categoryId.HasValue)
-            query = query.Where(p => p.CategoryId == categoryId);
-
-        if (!string.IsNullOrEmpty(search))
-            query = query.Where(p => p.Name.Contains(search) || p.Description.Contains(search));
-
-        var products = await query.ToListAsync();
-        ViewBag.Categories = await _context.Categories.ToListAsync();
+        var products = await _productService.GetAllProductsAsync(categoryId, search);
+        ViewBag.Categories = await _categoryRepository.GetAllAsync();
         ViewBag.SelectedCategory = categoryId;
 
         return View(products);
@@ -36,10 +26,7 @@ public class ProductController : Controller
 
     public async Task<IActionResult> Details(int id)
     {
-        var product = await _context.Products
-            .Include(p => p.Category)
-            .Include(p => p.Seller)
-            .FirstOrDefaultAsync(p => p.Id == id && p.IsActive);
+        var product = await _productService.GetProductDetailsAsync(id);
 
         if (product == null)
             return NotFound();

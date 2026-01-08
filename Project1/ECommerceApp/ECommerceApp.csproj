@@ -19,4 +19,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="ECommerceApp.Tests\**" />
+    <Content Remove="ECommerceApp.Tests\**" />
+    <EmbeddedResource Remove="ECommerceApp.Tests\**" />
+    <None Remove="ECommerceApp.Tests\**" />
+  </ItemGroup>
+
 </Project>
