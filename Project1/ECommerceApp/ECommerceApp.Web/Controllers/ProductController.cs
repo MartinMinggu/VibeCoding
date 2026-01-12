@@ -86,6 +86,7 @@ public class ProductController : Controller
                 id = p.Id,
                 name = p.Name,
                 price = p.Price,
+                stock = p.Stock,
                 imageUrl = p.ImageUrl,
                 categoryName = p.CategoryName,
                 sellerName = p.SellerName
@@ -106,6 +107,34 @@ public class ProductController : Controller
         if (product == null)
             return NotFound();
 
+        // Get similar products from same category
+        var similarProducts = await _productService.GetSimilarProductsAsync(id, product.CategoryId, 8);
+        ViewBag.SimilarProducts = similarProducts;
+
         return View(product);
+    }
+
+    /// <summary>
+    /// API endpoint for fetching recently viewed products by IDs
+    /// </summary>
+    [HttpGet]
+    [Route("Product/GetRecentlyViewedApi")]
+    public async Task<IActionResult> GetRecentlyViewedApi([FromQuery] List<int> ids)
+    {
+        if (ids == null || !ids.Any())
+            return Json(new { products = new List<object>() });
+
+        var products = await _productService.GetProductsByIdsAsync(ids);
+        
+        var result = products.Select(p => new
+        {
+            id = p.Id,
+            name = p.Name,
+            price = p.Price,
+            imageUrl = p.ImageUrl,
+            categoryName = p.CategoryName
+        });
+
+        return Json(new { products = result });
     }
 }

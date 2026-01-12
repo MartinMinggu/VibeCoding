@@ -18,4 +18,6 @@ public interface IProductService
     Task<IEnumerable<ProductDto>> GetSellerProductsAsync(string sellerId);
     Task<IEnumerable<ProductDto>> GetTopSellingProductsAsync(int count, string? sellerId = null);
     Task<int> GetProductCountBySellerAsync(string sellerId);
+    Task<IEnumerable<ProductDto>> GetSimilarProductsAsync(int productId, int categoryId, int count = 8);
+    Task<IEnumerable<ProductDto>> GetProductsByIdsAsync(List<int> productIds);
 }

@@ -184,6 +184,36 @@ public class ProductService : IProductService
         return products.Count();
     }
 
+    public async Task<IEnumerable<ProductDto>> GetSimilarProductsAsync(int productId, int categoryId, int count = 8)
+    {
+        var products = await _productRepository.GetProductsByCategoryAsync(categoryId);
+        
+        // Exclude current product and take random selection
+        var similarProducts = products
+            .Where(p => p.Id != productId && p.IsActive)
+            .OrderBy(x => Guid.NewGuid()) // Random order
+            .Take(count)
+            .ToList();
+
+        return similarProducts.Select(MapToDto);
+    }
+
+    public async Task<IEnumerable<ProductDto>> GetProductsByIdsAsync(List<int> productIds)
+    {
+        if (productIds == null || !productIds.Any())
+            return Enumerable.Empty<ProductDto>();
+
+        var allProducts = await _productRepository.GetActiveProductsAsync();
+        
+        // Filter by IDs and maintain order
+        var products = productIds
+            .Select(id => allProducts.FirstOrDefault(p => p.Id == id))
+            .Where(p => p != null)
+            .ToList();
+
+        return products.Select(MapToDto);
+    }
+
     private ProductDto MapToDto(Product product)
     {
         return new ProductDto
