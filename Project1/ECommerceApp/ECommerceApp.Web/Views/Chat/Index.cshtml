@@ -1,0 +1,88 @@
+@model IEnumerable<ECommerceApp.Domain.Entities.Conversation>
+@{
+    ViewData["Title"] = "Messages";
+    var currentUserId = ViewBag.CurrentUserId as string;
+}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">
+                    <i class="fas fa-comments text-primary me-2"></i>Messages
+                </h2>
+                <span class="badge bg-primary fs-6">@Model.Count() Conversations</span>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                        <h4 class="text-muted">No messages yet</h4>
+                        <p class="text-muted mb-4">Start a conversation by messaging a seller from their product page.</p>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-primary">
+                            <i class="fas fa-shopping-bag me-2"></i>Browse Products
+                        </a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="list-group shadow-sm">
+                    @foreach (var conv in Model)
+                    {
+                        var otherUser = conv.BuyerId == currentUserId ? conv.Seller : conv.Buyer;
+                        var lastMessage = conv.Messages.FirstOrDefault();
+                        var hasUnread = lastMessage != null && !lastMessage.IsRead && lastMessage.SenderId != currentUserId;
+                        
+                        <a asp-action="Conversation" asp-route-id="@conv.Id" 
+                           class="list-group-item list-group-item-action @(hasUnread ? "bg-light" : "")">
+                            <div class="d-flex w-100 justify-content-between align-items-start">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                         style="width: 50px; height: 50px;">
+                                        <span class="fw-bold">@otherUser?.FirstName?.Substring(0, 1)@otherUser?.LastName?.Substring(0, 1)</span>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1 @(hasUnread ? "fw-bold" : "")">
+                                            @otherUser?.FirstName @otherUser?.LastName
+                                            @if (conv.Product != null)
+                                            {
+                                                <small class="text-muted ms-2">
+                                                    <i class="fas fa-box me-1"></i>@conv.Product.Name
+                                                </small>
+                                            }
+                                        </h6>
+                                        <p class="mb-0 text-muted small text-truncate" style="max-width: 400px;">
+                                            @if (lastMessage != null)
+                                            {
+                                                @if (lastMessage.SenderId == currentUserId)
+                                                {
+                                                    <span class="text-muted">You: </span>
+                                                }
+                                                @lastMessage.Content
+                                            }
+                                            else
+                                            {
+                                                <span class="fst-italic">No messages yet</span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <small class="text-muted">@conv.LastMessageAt.ToString("MMM dd, HH:mm")</small>
+                                    @if (hasUnread)
+                                    {
+                                        <br />
+                                        <span class="badge bg-primary rounded-pill mt-1">New</span>
+                                    }
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -100,7 +100,21 @@ public class ProductRepository : IProductRepository
         return await _context.Products
             .Include(p => p.Category)
             .Include(p => p.Seller)
+            .Include(p => p.Images.OrderBy(i => i.DisplayOrder))
             .FirstOrDefaultAsync(p => p.Id == id);
+    }
+    
+    public async Task DeleteProductImageAsync(ProductImage image)
+    {
+        _context.Set<ProductImage>().Remove(image);
+        await Task.CompletedTask;
+    }
+
+    public async Task<ProductImage?> GetProductImageByIdAsync(int id)
+    {
+        return await _context.Set<ProductImage>()
+            .Include(i => i.Product)
+            .FirstOrDefaultAsync(i => i.Id == id);
     }
 
     public async Task<IEnumerable<Product>> GetTopSellingProductsAsync(int count, string? sellerId = null)
@@ -118,5 +132,54 @@ public class ProductRepository : IProductRepository
             .OrderByDescending(p => p.OrderItems.Sum(oi => oi.Quantity))
             .Take(count)
             .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Product>> GetFilteredProductsAsync(
+        string? search, int? categoryId, decimal? minPrice, decimal? maxPrice, string? sortBy)
+    {
+        var query = _context.Products
+            .Include(p => p.Category)
+            .Include(p => p.Seller)
+            .Where(p => p.IsActive)
+            .AsQueryable();
+
+        // Apply search filter
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            var searchLower = search.ToLower();
+            query = query.Where(p => 
+                p.Name.ToLower().Contains(searchLower) || 
+                p.Description.ToLower().Contains(searchLower));
+        }
+
+        // Apply category filter
+        if (categoryId.HasValue)
+        {
+            query = query.Where(p => p.CategoryId == categoryId.Value);
+        }
+
+        // Apply price range filter
+        if (minPrice.HasValue)
+        {
+            query = query.Where(p => p.Price >= minPrice.Value);
+        }
+
+        if (maxPrice.HasValue)
+        {
+            query = query.Where(p => p.Price <= maxPrice.Value);
+        }
+
+        // Apply sorting
+        query = sortBy?.ToLower() switch
+        {
+            "price_asc" => query.OrderBy(p => p.Price),
+            "price_desc" => query.OrderByDescending(p => p.Price),
+            "name_asc" => query.OrderBy(p => p.Name),
+            "name_desc" => query.OrderByDescending(p => p.Name),
+            "newest" => query.OrderByDescending(p => p.CreatedAt),
+            _ => query.OrderByDescending(p => p.CreatedAt) // Default: newest first
+        };
+
+        return await query.ToListAsync();
     }
 }

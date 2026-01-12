@@ -8,6 +8,9 @@ namespace ECommerceApp.Application.Services;
 public interface IProductService
 {
     Task<IEnumerable<ProductDto>> GetAllProductsAsync(int? categoryId = null, string? search = null);
+    Task<IEnumerable<ProductDto>> GetFilteredProductsAsync(ProductFilterDto filter);
+    Task<bool> AddProductGalleryImagesAsync(int productId, List<string> imageUrls);
+    Task<bool> RemoveProductGalleryImageAsync(int imageId, string sellerId);
     Task<ProductDetailsDto?> GetProductDetailsAsync(int id);
     Task<ProductDto> CreateProductAsync(CreateProductDto dto, string sellerId);
     Task<bool> UpdateProductAsync(int id, UpdateProductDto dto, string sellerId);

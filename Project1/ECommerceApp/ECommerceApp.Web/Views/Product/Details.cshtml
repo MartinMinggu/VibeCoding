@@ -13,22 +13,42 @@
     </nav>
 
     <div class="row gx-5">
+        <!-- Image Gallery -->
         <div class="col-md-6 mb-4">
-             <div class="bg-light rounded-lg shadow-sm d-flex align-items-center justify-content-center" style="height: 500px; overflow: hidden;">
+            <!-- Main Image -->
+            <div class="bg-light rounded-lg shadow-sm d-flex align-items-center justify-content-center mb-3" 
+                 style="height: 450px; overflow: hidden;" id="mainImageContainer">
                 @if (!string.IsNullOrEmpty(Model.ImageUrl))
                 {
-                        <img src="@Model.ImageUrl" class="img-fluid w-100" style="object-fit: contain; max-height: 100%;" alt="@Model.Name">
+                    <img src="@Model.ImageUrl" class="img-fluid w-100" style="object-fit: contain; max-height: 100%;" 
+                         alt="@Model.Name" id="mainImage">
                 }
                 else
                 {
                     <i class="fas fa-box fa-5x text-secondary"></i>
                 }
             </div>
+            <!-- Thumbnail Gallery -->
+            @if (Model.Images != null && Model.Images.Any())
+            {
+                <div class="d-flex gap-2 overflow-auto pb-2">
+                    @foreach (var img in Model.Images)
+                    {
+                        <div class="thumbnail-item border rounded p-1 cursor-pointer" 
+                             style="min-width: 80px; height: 80px; cursor: pointer;"
+                             onclick="changeMainImage('@img.ImageUrl')">
+                            <img src="@img.ImageUrl" class="img-fluid h-100 w-100" style="object-fit: cover;" alt="Thumbnail">
+                        </div>
+                    }
+                </div>
+            }
         </div>
+
+        <!-- Product Info -->
         <div class="col-md-6">
             <h1 class="display-5 fw-bold mb-2">@Model.Name</h1>
             <div class="d-flex align-items-center mb-3">
-                 <div class="text-warning me-2 small">
+                <div class="text-warning me-2 small">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -41,55 +61,72 @@
             
             <p class="lead text-muted mb-4">@Model.Description</p>
             
-            <div class="d-flex align-items-center mb-4">
-                 <span class="me-3 fw-bold">Availability:</span>
-                 @if(Model.Stock > 0)
+            <div class="d-flex align-items-center mb-3">
+                <span class="me-3 fw-bold">Availability:</span>
+                @if(Model.Stock > 0)
                 {
                     <span class="badge bg-success">In Stock (@Model.Stock)</span>
                 }
                 else
                 {
-                     <span class="badge bg-danger">Out of Stock</span>
+                    <span class="badge bg-danger">Out of Stock</span>
                 }
             </div>
             
-            <div class="d-flex align-items-center mb-4">
-                 <span class="me-3 fw-bold">Seller:</span>
-                 <span class="text-muted"><i class="fas fa-store me-2"></i>@Model.SellerName</span>
+            <!-- Seller Info with Chat Button -->
+            <div class="card bg-light border-0 mb-4">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
+                             style="width: 45px; height: 45px;">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0">@Model.SellerName</h6>
+                            <small class="text-muted">Seller</small>
+                        </div>
+                    </div>
+                    <a asp-controller="Chat" asp-action="Start" 
+                       asp-route-sellerId="@Model.SellerId" asp-route-productId="@Model.Id"
+                       class="btn btn-outline-primary">
+                        <i class="fas fa-comments me-1"></i>Chat with Seller
+                    </a>
+                </div>
             </div>
 
-            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="mb-5">
+            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="mb-4">
                 <input type="hidden" name="productId" value="@Model.Id" />
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
                         <label for="quantity" class="col-form-label fw-bold">Quantity:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" max="@Model.Stock" style="width: 80px;">
+                        <input type="number" name="quantity" id="quantity" class="form-control" 
+                               value="1" min="1" max="@Model.Stock" style="width: 80px;">
                     </div>
                     <div class="col-auto">
-                         <button type="submit" class="btn btn-primary btn-lg px-5 shadow-md" @(Model.Stock == 0 ? "disabled" : "")>
-                            <i class="fas fa-cart-plus me-2"></i> Add to Cart
+                        <button type="submit" class="btn btn-primary btn-lg px-5 shadow-md" @(Model.Stock == 0 ? "disabled" : "")>
+                            <i class="fas fa-cart-plus me-2"></i>Add to Cart
                         </button>
                     </div>
                 </div>
             </form>
             
             <div class="border-top pt-4">
-                 <div class="row text-center">
+                <div class="row text-center">
                     <div class="col-4">
                         <div class="p-3">
                             <i class="fas fa-truck fa-2x text-muted mb-2"></i>
                             <h6 class="fw-bold">Free Delivery</h6>
                         </div>
                     </div>
-                     <div class="col-4">
+                    <div class="col-4">
                         <div class="p-3">
                             <i class="fas fa-shield-alt fa-2x text-muted mb-2"></i>
                             <h6 class="fw-bold">Secure Payment</h6>
                         </div>
                     </div>
-                     <div class="col-4">
+                    <div class="col-4">
                         <div class="p-3">
                             <i class="fas fa-undo fa-2x text-muted mb-2"></i>
                             <h6 class="fw-bold">Free Returns</h6>
@@ -100,3 +137,16 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+            // Highlight active thumbnail
+            document.querySelectorAll('.thumbnail-item').forEach(el => {
+                el.classList.remove('border-primary', 'border-2');
+            });
+            event.currentTarget.classList.add('border-primary', 'border-2');
+        }
+    </script>
+}

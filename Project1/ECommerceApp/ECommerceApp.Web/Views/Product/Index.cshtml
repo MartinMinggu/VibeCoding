@@ -3,72 +3,323 @@
 @{
     ViewData["Title"] = "Products";
     var categories = ViewBag.Categories as IEnumerable<ECommerceApp.Domain.Entities.Category>;
+    var filter = ViewBag.CurrentFilter as ECommerceApp.Application.DTOs.ProductFilterDto;
 }
 
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="display-5 fw-bold text-dark">Our Products</h1>
-        <form asp-action="Index" method="get" class="d-flex">
-            <select name="categoryId" class="form-select me-2" style="width: auto;">
-                <option value="">All Categories</option>
-                @if (categories != null)
-                {
-                    foreach (var category in categories)
-                    {
-                        <option value="@category.Id" selected="@(ViewBag.SelectedCategory as int? == category.Id)">@category.Name</option>
-                    }
-                }
-            </select>
-            <input type="text" name="search" class="form-control me-2" placeholder="Search products..." value="@Context.Request.Query["search"]">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-        </form>
+        <span class="badge bg-primary fs-6">@Model.Count() Products</span>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-        @foreach (var item in Model)
-        {
-            <div class="col">
-                <div class="card h-100 shadow-sm border-0 position-relative">
-                    <div class="position-absolute top-0 end-0 p-3 z-index-1">
-                        <span class="badge bg-white text-dark shadow-sm">@item.CategoryName</span>
-                    </div>
-                    <div class="position-absolute top-0 start-0 p-3">
-                        <span class="badge bg-white text-muted shadow-sm"><i class="fas fa-store me-1"></i> @item.SellerName</span>
-                    </div>
-                    <div class="overflow-hidden bg-light rounded-top-lg" style="height: 240px; display: flex; align-items: center; justify-content: center;">
-                        @if (!string.IsNullOrEmpty(item.ImageUrl))
-                        {
-                             <img src="@item.ImageUrl" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="@item.Name">
-                        }
-                        else
-                        {
-                            <i class="fas fa-box fa-3x text-secondary"></i>
-                        }
-                    </div>
-                    <div class="card-body d-flex flex-column pt-4">
-                        <h5 class="card-title text-truncate mb-1">@item.Name</h5>
-                        <p class="card-text text-muted small text-truncate">@item.Description</p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-5 fw-bold text-primary">Rp @item.Price.ToString("N0")</span>
-                            <div class="text-warning small">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+    <!-- Filter Section -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form asp-action="Index" method="get">
+                <div class="row g-3 align-items-end">
+                    <!-- Search -->
+                    <div class="col-md-3">
+                        <label class="form-label small text-muted">Search</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" name="search" class="form-control" placeholder="Search products..." 
+                                   value="@filter?.Search">
                         </div>
-                        <div class="mt-auto d-grid gap-2">
-                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">View Details</a>
-                             <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-grid">
-                                <input type="hidden" name="productId" value="@item.Id" />
-                                <input type="hidden" name="quantity" value="1" />
-                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-cart-plus me-2"></i> Add to Cart</button>
-                            </form>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="col-md-2">
+                        <label class="form-label small text-muted">Category</label>
+                        <select name="categoryId" class="form-select">
+                            <option value="">All Categories</option>
+                            @if (categories != null)
+                            {
+                                foreach (var category in categories)
+                                {
+                                    <option value="@category.Id" selected="@(filter?.CategoryId == category.Id)">@category.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Min Price -->
+                    <div class="col-md-2">
+                        <label class="form-label small text-muted">Min Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white">Rp</span>
+                            <input type="number" name="minPrice" class="form-control" placeholder="0" 
+                                   value="@filter?.MinPrice" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Max Price -->
+                    <div class="col-md-2">
+                        <label class="form-label small text-muted">Max Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white">Rp</span>
+                            <input type="number" name="maxPrice" class="form-control" placeholder="Max" 
+                                   value="@filter?.MaxPrice" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Sort -->
+                    <div class="col-md-2">
+                        <label class="form-label small text-muted">Sort By</label>
+                        <select name="sortBy" class="form-select">
+                            <option value="newest" selected="@(filter?.SortBy == "newest")">Newest</option>
+                            <option value="price_asc" selected="@(filter?.SortBy == "price_asc")">Price: Low to High</option>
+                            <option value="price_desc" selected="@(filter?.SortBy == "price_desc")">Price: High to Low</option>
+                            <option value="name_asc" selected="@(filter?.SortBy == "name_asc")">Name: A-Z</option>
+                            <option value="name_desc" selected="@(filter?.SortBy == "name_desc")">Name: Z-A</option>
+                        </select>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="col-md-1">
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-filter"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+
+                <!-- Active Filters -->
+                @if (!string.IsNullOrEmpty(filter?.Search) || filter?.CategoryId.HasValue == true || 
+                     filter?.MinPrice.HasValue == true || filter?.MaxPrice.HasValue == true)
+                {
+                    <div class="mt-3 d-flex flex-wrap gap-2 align-items-center">
+                        <span class="text-muted small">Active filters:</span>
+                        @if (!string.IsNullOrEmpty(filter?.Search))
+                        {
+                            <span class="badge bg-light text-dark border">
+                                <i class="fas fa-search me-1"></i>@filter.Search
+                            </span>
+                        }
+                        @if (filter?.CategoryId.HasValue == true)
+                        {
+                            var catName = categories?.FirstOrDefault(c => c.Id == filter.CategoryId)?.Name;
+                            <span class="badge bg-light text-dark border">
+                                <i class="fas fa-tag me-1"></i>@catName
+                            </span>
+                        }
+                        @if (filter?.MinPrice.HasValue == true || filter?.MaxPrice.HasValue == true)
+                        {
+                            <span class="badge bg-light text-dark border">
+                                <i class="fas fa-money-bill me-1"></i>
+                                Rp @(filter?.MinPrice?.ToString("N0") ?? "0") - Rp @(filter?.MaxPrice?.ToString("N0") ?? "∞")
+                            </span>
+                        }
+                        <a asp-action="Index" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-times me-1"></i>Clear All
+                        </a>
+                    </div>
+                }
+            </form>
+        </div>
     </div>
+
+    <!-- Products Grid -->
+    @if (Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4" id="productsGrid">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 position-relative product-card">
+                        <div class="position-absolute top-0 end-0 p-3 z-index-1">
+                            <span class="badge bg-white text-dark shadow-sm">@item.CategoryName</span>
+                        </div>
+                        <div class="position-absolute top-0 start-0 p-3">
+                            <span class="badge bg-white text-muted shadow-sm"><i class="fas fa-store me-1"></i> @item.SellerName</span>
+                        </div>
+                        <div class="overflow-hidden bg-light rounded-top-lg" style="height: 240px; display: flex; align-items: center; justify-content: center;">
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                 <img src="@item.ImageUrl" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="@item.Name">
+                            }
+                            else
+                            {
+                                <i class="fas fa-box fa-3x text-secondary"></i>
+                            }
+                        </div>
+                        <div class="card-body d-flex flex-column pt-4">
+                            <h5 class="card-title text-truncate mb-1">@item.Name</h5>
+                            <p class="card-text text-muted small text-truncate">@item.Description</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="fs-5 fw-bold text-primary">Rp @item.Price.ToString("N0")</span>
+                                <div class="text-warning small">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="mt-auto d-grid gap-2">
+                                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">View Details</a>
+                                 <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-grid">
+                                    <input type="hidden" name="productId" value="@item.Id" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-cart-plus me-2"></i> Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="text-center py-4" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2 text-muted">Loading more products...</p>
+        </div>
+        
+        <!-- Sentinel for Intersection Observer -->
+        <div id="sentinel" style="height: 1px;"></div>
+        
+        <!-- End Message -->
+        <div id="endMessage" class="text-center py-4" style="display: none;">
+            <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
+            <p class="text-muted">You've seen all products!</p>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-box-open fa-4x text-muted mb-3"></i>
+            <h4 class="text-muted">No products found</h4>
+            <p class="text-muted">Try adjusting your filters or search terms</p>
+            <a asp-action="Index" class="btn btn-primary">
+                <i class="fas fa-redo me-2"></i>Reset Filters
+            </a>
+        </div>
+    }
 </div>
+
+@section Scripts {
+    <script>
+        let currentPage = 1;
+        let isLoading = false;
+        let hasMore = @(ViewBag.HasMore?.ToString().ToLower() ?? "false");
+        
+        // Get current filter parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const filters = {
+            search: urlParams.get('search') || '',
+            categoryId: urlParams.get('categoryId') || '',
+            minPrice: urlParams.get('minPrice') || '',
+            maxPrice: urlParams.get('maxPrice') || '',
+            sortBy: urlParams.get('sortBy') || ''
+        };
+
+        // Product card template
+        function createProductCard(product) {
+            return `
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 position-relative product-card">
+                        <div class="position-absolute top-0 end-0 p-3 z-index-1">
+                            <span class="badge bg-white text-dark shadow-sm">${product.categoryName}</span>
+                        </div>
+                        <div class="position-absolute top-0 start-0 p-3">
+                            <span class="badge bg-white text-muted shadow-sm"><i class="fas fa-store me-1"></i> ${product.sellerName}</span>
+                        </div>
+                        <div class="overflow-hidden bg-light rounded-top-lg" style="height: 240px; display: flex; align-items: center; justify-content: center;">
+                            ${product.imageUrl ? 
+                                `<img src="${product.imageUrl}" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="${product.name}">` :
+                                '<i class="fas fa-box fa-3x text-secondary"></i>'
+                            }
+                        </div>
+                        <div class="card-body d-flex flex-column pt-4">
+                            <h5 class="card-title text-truncate mb-1">${product.name}</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="fs-5 fw-bold text-primary">Rp ${product.price.toLocaleString('id-ID')}</span>
+                                <div class="text-warning small">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="mt-auto d-grid gap-2">
+                                <a href="/Product/Details/${product.id}" class="btn btn-outline-secondary btn-sm">View Details</a>
+                                <form action="/Cart/AddToCart" method="post" class="d-grid">
+                                    <input type="hidden" name="productId" value="${product.id}" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-cart-plus me-2"></i> Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load more products
+        async function loadMoreProducts() {
+            if (isLoading || !hasMore) return;
+            
+            isLoading = true;
+            document.getElementById('loadingIndicator').style.display = 'block';
+            
+            try {
+                currentPage++;
+                const queryString = new URLSearchParams({
+                    page: currentPage,
+                    pageSize: 10,
+                    ...filters
+                }).toString();
+                
+                const response = await fetch(`/Product/GetProductsApi?${queryString}`);
+                const data = await response.json();
+                
+                const grid = document.getElementById('productsGrid');
+                data.products.forEach(product => {
+                    grid.insertAdjacentHTML('beforeend', createProductCard(product));
+                });
+                
+                hasMore = data.hasMore;
+                
+                if (!hasMore) {
+                    document.getElementById('sentinel').style.display = 'none';
+                    document.getElementById('endMessage').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+            } finally {
+                isLoading = false;
+                document.getElementById('loadingIndicator').style.display = 'none';
+            }
+        }
+
+        // Intersection Observer for infinite scroll
+        if (hasMore) {
+            const sentinel = document.getElementById('sentinel');
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    loadMoreProducts();
+                }
+            }, {
+                rootMargin: '100px' // Start loading 100px before reaching the sentinel
+            });
+            
+            observer.observe(sentinel);
+        } else {
+            document.getElementById('endMessage').style.display = 'block';
+        }
+    </script>
+}
+
+<style>
+    .product-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+</style>

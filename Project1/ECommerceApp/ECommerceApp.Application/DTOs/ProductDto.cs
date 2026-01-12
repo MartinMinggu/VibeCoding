@@ -34,6 +34,7 @@ public class ProductDetailsDto
     public string SellerName { get; set; } = string.Empty;
     public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
+    public List<ProductImageDto> Images { get; set; } = new();
 }
 
 /// <summary>
@@ -61,4 +62,13 @@ public class UpdateProductDto
     public string ImageUrl { get; set; } = string.Empty;
     public int CategoryId { get; set; }
     public bool IsActive { get; set; }
+}
+
+/// <summary>
+/// DTO for product image
+/// </summary>
+public class ProductImageDto
+{
+    public int Id { get; set; }
+    public string ImageUrl { get; set; } = string.Empty;
 }

@@ -38,6 +38,18 @@ public class ProductService : IProductService
         return products.Select(MapToDto);
     }
 
+    public async Task<IEnumerable<ProductDto>> GetFilteredProductsAsync(ProductFilterDto filter)
+    {
+        var products = await _productRepository.GetFilteredProductsAsync(
+            filter.Search,
+            filter.CategoryId,
+            filter.MinPrice,
+            filter.MaxPrice,
+            filter.SortBy);
+
+        return products.Select(MapToDto);
+    }
+
     public async Task<ProductDetailsDto?> GetProductDetailsAsync(int id)
     {
         var product = await _productRepository.GetProductWithDetailsAsync(id);
@@ -57,8 +69,44 @@ public class ProductService : IProductService
             SellerId = product.SellerId,
             SellerName = product.Seller != null ? $"{product.Seller.FirstName} {product.Seller.LastName}" : string.Empty,
             IsActive = product.IsActive,
-            CreatedAt = product.CreatedAt
+            CreatedAt = product.CreatedAt,
+            Images = product.Images.Select(i => new ProductImageDto 
+            { 
+                Id = i.Id, 
+                ImageUrl = i.ImageUrl
+            }).ToList()
         };
+    }
+
+    public async Task<bool> AddProductGalleryImagesAsync(int productId, List<string> imageUrls)
+    {
+        var product = await _productRepository.GetProductWithDetailsAsync(productId);
+        if (product == null) return false;
+
+        foreach (var url in imageUrls)
+        {
+            product.Images.Add(new ProductImage 
+            { 
+                ProductId = productId,
+                ImageUrl = url,
+                IsPrimary = false,
+                CreatedAt = DateTime.Now
+            });
+        }
+
+        await _productRepository.UpdateAsync(product);
+        await _productRepository.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> RemoveProductGalleryImageAsync(int imageId, string sellerId)
+    {
+        var image = await _productRepository.GetProductImageByIdAsync(imageId);
+        if (image == null || image.Product.SellerId != sellerId) return false;
+
+        await _productRepository.DeleteProductImageAsync(image);
+        await _productRepository.SaveChangesAsync();
+        return true;
     }
 
     public async Task<ProductDto> CreateProductAsync(CreateProductDto dto, string sellerId)

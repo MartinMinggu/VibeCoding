@@ -20,6 +20,9 @@ namespace ECommerceApp.Infrastructure.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Lookup> Lookups { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Conversation> Conversations { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -68,6 +71,49 @@ namespace ECommerceApp.Infrastructure.Data
                 .HasOne(a => a.CreatedBy)
                 .WithMany()
                 .HasForeignKey(a => a.CreatedById)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Configure ProductImage entity
+            builder.Entity<ProductImage>(entity =>
+            {
+                entity.ToTable("ProductGalleryImages");
+                entity.HasOne(pi => pi.Product)
+                    .WithMany(p => p.Images)
+                    .HasForeignKey(pi => pi.ProductId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+
+            // Configure Conversation entity
+            builder.Entity<Conversation>()
+                .HasOne(c => c.Buyer)
+                .WithMany()
+                .HasForeignKey(c => c.BuyerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Conversation>()
+                .HasOne(c => c.Seller)
+                .WithMany()
+                .HasForeignKey(c => c.SellerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Conversation>()
+                .HasOne(c => c.Product)
+                .WithMany()
+                .HasForeignKey(c => c.ProductId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Configure Message entity
+            builder.Entity<Message>()
+                .HasOne(m => m.Conversation)
+                .WithMany(c => c.Messages)
+                .HasForeignKey(m => m.ConversationId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany()
+                .HasForeignKey(m => m.SenderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Seed categories

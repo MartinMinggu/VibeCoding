@@ -75,3 +75,14 @@ StyleCop.Cache
 # Other
 *.log
 *.lock
+
+# User uploaded files (should not be in source control)
+# **/wwwroot/images/
+
+# Debug/error log files
+build_err.txt
+build_errors.txt
+db_error.txt
+db_error_2.txt
+*_err.txt
+*_error*.txt

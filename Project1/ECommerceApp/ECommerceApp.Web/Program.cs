@@ -23,12 +23,14 @@ builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
+builder.Services.AddScoped<IChatRepository, ChatRepository>();
 
 // Register Services
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
+builder.Services.AddScoped<IChatService, ChatService>();
 
 builder.Services.AddControllersWithViews()
     .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
@@ -37,6 +39,7 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 
 
 
@@ -72,6 +75,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Handle status codes (404, 403, etc.) with custom pages
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
 
 
 app.UseAuthorization();
@@ -82,6 +88,8 @@ using (var scope = app.Services.CreateScope())
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    
+    await dbContext.Database.MigrateAsync();
     
     string[] roles = { "Admin", "ContentManager", "Seller", "Customer" };
     foreach (var role in roles)
@@ -174,9 +182,21 @@ using (var scope = app.Services.CreateScope())
     
     // Seed sample products (100 products)
     await ECommerceApp.Web.Data.ProductSeeder.SeedProductsAsync(dbContext, sellerUser.Id);
+    
+    // Seed 5 new sellers and 100 new products
+    var newSellerIds = await ECommerceApp.Web.Data.SellerSeeder.SeedSellersAsync(userManager);
+    if (newSellerIds.Count > 0)
+    {
+        await ECommerceApp.Web.Data.NewProductSeeder.SeedNewProductsAsync(dbContext, newSellerIds);
+    }
+    
+    // Seed buyer accounts
+    // TODO: Fix BuyerSeeder error before uncommenting
+    // await ECommerceApp.Web.Data.BuyerSeeder.SeedBuyersAsync(userManager);
 }
 
 app.MapRazorPages();
+app.MapHub<ECommerceApp.Web.Hubs.ChatHub>("/chathub");
 
 // Area routing
 app.MapControllerRoute(
