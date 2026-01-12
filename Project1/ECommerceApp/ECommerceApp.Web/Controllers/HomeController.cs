@@ -9,17 +9,26 @@ namespace ECommerceApp.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IAnnouncementService _announcementService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(IProductService productService, UserManager<ApplicationUser> userManager)
+        public HomeController(
+            IProductService productService, 
+            IAnnouncementService announcementService,
+            UserManager<ApplicationUser> userManager)
         {
             _productService = productService;
+            _announcementService = announcementService;
             _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
+            
+            // Get active announcements for display
+            var announcements = await _announcementService.GetActiveAnnouncementsAsync();
+            ViewBag.Announcements = announcements;
             
             if (user != null && user.IsSeller)
             {
@@ -38,6 +47,34 @@ namespace ECommerceApp.Controllers
         public async Task<IActionResult> Privacy()
         {
             return View();
+        }
+
+        public async Task<IActionResult> AnnouncementDetail(int id)
+        {
+            var announcement = await _announcementService.GetAnnouncementByIdAsync(id);
+            if (announcement == null)
+            {
+                return NotFound();
+            }
+            return View(announcement);
+        }
+
+        public async Task<IActionResult> Announcements()
+        {
+            var announcements = await _announcementService.GetActiveAnnouncementsAsync();
+            return View(announcements);
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName,
+                Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.MakeCookieValue(new Microsoft.AspNetCore.Localization.RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
         }
     }
 }

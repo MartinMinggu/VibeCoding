@@ -19,6 +19,7 @@ namespace ECommerceApp.Infrastructure.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Lookup> Lookups { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -61,6 +62,13 @@ namespace ECommerceApp.Infrastructure.Data
                 .HasOne(oi => oi.Product)
                 .WithMany(p => p.OrderItems)
                 .HasForeignKey(oi => oi.ProductId);
+
+            // Configure Announcement entity
+            builder.Entity<Announcement>()
+                .HasOne(a => a.CreatedBy)
+                .WithMany()
+                .HasForeignKey(a => a.CreatedById)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Seed categories
             builder.Entity<Category>().HasData(
