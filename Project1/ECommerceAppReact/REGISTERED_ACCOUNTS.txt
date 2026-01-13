@@ -1,0 +1,80 @@
+================================================================================
+  REGISTERED ACCOUNTS - ECommerce App
+  Tanggal: 13 Januari 2026
+  Backend API: http://localhost:5211
+  Frontend React: http://localhost:3000
+================================================================================
+
+BUYER ACCOUNTS (2 Akun)
+--------------------------------------------------------------------------------
+1. John Buyer
+   Email    : buyer1@test.com
+   Password : Test123!
+   Role     : Customer
+   Status   : ✓ Registered Successfully
+   
+2. Jane Customer
+   Email    : buyer2@test.com
+   Password : Test123!
+   Role     : Customer
+   Status   : ✓ Registered Successfully
+
+
+SELLER ACCOUNTS (2 Akun)
+--------------------------------------------------------------------------------
+3. Mike Seller
+   Email    : seller1@test.com
+   Password : Test123!
+   Role     : Seller
+   Status   : ✓ Registered Successfully
+   
+4. Sarah Shop
+   Email    : seller2@test.com
+   Password : Test123!
+   Role     : Seller
+   Status   : ✓ Registered Successfully
+
+
+SUMMARY
+--------------------------------------------------------------------------------
+Total Registered: 4 Accounts
+- Buyers  : 2
+- Sellers : 2
+
+All accounts registered via React Frontend (http://localhost:3000/register)
+Data tersimpan di Oracle Database via .NET API Backend
+
+
+CARA MENGGUNAKAN
+--------------------------------------------------------------------------------
+1. Login ke aplikasi:
+   - Buka http://localhost:3000/login
+   - Masukkan email dan password dari daftar di atas
+   - Klik "Login"
+
+2. Test sebagai Buyer:
+   - Login dengan buyer1@test.com atau buyer2@test.com
+   - Akses fitur: Browse products, Add to cart, Checkout
+
+3. Test sebagai Seller:
+   - Login dengan seller1@test.com atau seller2@test.com
+   - Akses fitur tambahan: Manage products, View sales, Inventory
+
+
+CATATAN
+--------------------------------------------------------------------------------
+- Semua akun menggunakan password yang sama: Test123!
+- Seller memiliki akses lebih banyak dibanding Customer
+- Akun tersimpan permanent di database Oracle
+- Untuk menambah akun baru, gunakan form register di /register
+
+
+TECHNICAL INFO
+--------------------------------------------------------------------------------
+Database  : Oracle 21c XE
+Backend   : .NET 8 Web API (ASP.NET Core)
+Frontend  : React 18.2.3 + Vite
+Auth      : ASP.NET Identity + JWT (mock token)
+Proxy     : Vite proxy from port 3000 to port 5211
+
+================================================================================

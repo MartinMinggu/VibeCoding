@@ -1,0 +1,47 @@
+# Git Commands untuk Push ke Branch dev-dotnet-oracle-react
+# Copy paste command di bawah ini satu per satu ke terminal Anda
+
+# 1. Check status Git
+git status
+
+# 2. Buat branch baru dev-dotnet-oracle-react
+git checkout -b dev-dotnet-oracle-react
+
+# 3. Add semua file yang berubah
+git add .
+
+# 4. Commit dengan message lengkap
+git commit -m "feat: Separate backend API and React frontend with full integration
+
+- Backend (.NET 8 Web API):
+  * Created ECommerceApp.API project with Auth and Products controllers
+  * Configured Oracle DB, ASP.NET Identity, CORS
+  * Added POST/PUT/DELETE endpoints for product management
+  * Swagger/OpenAPI documentation
+  * Running on port 5211
+
+- Frontend (React 18 + Vite):
+  * Premium UI with Bootstrap 5 and Font Awesome
+  * 16 varied products with real Unsplash images
+  * Authentication forms (Login/Register with seller option)
+  * Product management forms (Add/Edit products)
+  * Vite proxy configured to backend port 5211
+  * Responsive design matching MVC version
+
+- User Accounts:
+  * Registered 2 buyers and 2 sellers via frontend
+  * Test credentials in REGISTERED_ACCOUNTS.txt
+
+- Documentation:
+  * TEST_USERS.md - 20 test accounts
+  * SELLER_PRODUCTS.txt - Product assignments
+  * Complete walkthrough of implementation"
+
+# 5. Push ke remote repository (origin)
+git push -u origin dev-dotnet-oracle-react
+
+# 6. (Optional) Lihat branch yang ada
+git branch -a
+
+# 7. (Optional) Lihat log commit
+git log --oneline -5

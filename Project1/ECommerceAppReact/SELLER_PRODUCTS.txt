@@ -1,0 +1,165 @@
+================================================================================
+  PRODUK MILIK SELLER - ECommerce App
+  Database: Oracle 21c XE
+  Tanggal: 13 Januari 2026
+================================================================================
+
+SELLER 1: Mike Seller (seller1@test.com)
+Store Name: Tech & Electronics Store
+================================================================================
+
+Produk yang Dijual (8 items):
+--------------------------------------------------------------------------------
+1. MacBook Pro M3 16" 2024
+   - Harga: Rp 42.500.000
+   - Stock: 5 unit
+   - Kategori: Laptop
+   - Deskripsi: Powerful laptop with M3 chip, 32GB RAM, 1TB SSD
+   
+2. iPhone 15 Pro Max 256GB Titanium
+   - Harga: Rp 21.999.000
+   - Stock: 3 unit
+   - Kategori: Smartphone
+   - Deskripsi: Latest iPhone with A17 Pro chip and titanium design
+   
+3. Sony WH-1000XM5 Premium Headphones
+   - Harga: Rp 5.299.000
+   - Stock: 18 unit
+   - Kategori: Audio
+   - Deskripsi: Industry-leading noise cancellation wireless headphones
+   
+4. Samsung 65" Neo QLED 4K Smart TV
+   - Harga: Rp 28.900.000
+   - Stock: 0 unit (Out of Stock)
+   - Kategori: TV & Entertainment
+   - Deskripsi: Quantum Matrix Technology with Neural Quantum Processor
+   
+5. Dyson V15 Detect Absolute Vacuum
+   - Harga: Rp 11.499.000
+   - Stock: 9 unit
+   - Kategori: Home Appliances
+   - Deskripsi: Cordless vacuum with laser dust detection
+   
+6. Philips Hue Smart Bulb Starter Kit
+   - Harga: Rp 3.299.000
+   - Stock: 20 unit
+   - Kategori: Smart Home
+   - Deskripsi: WiFi-enabled color changing smart bulbs with bridge
+   
+7. Garmin Fenix 7X Solar Smartwatch
+   - Harga: Rp 14.999.000
+   - Stock: 7 unit
+   - Kategori: Wearables
+   - Deskripsi: Multisport GPS watch with solar charging
+   
+8. KitchenAid Artisan Stand Mixer
+   - Harga: Rp 8.750.000
+   - Stock: 11 unit
+   - Kategori: Kitchen
+   - Deskripsi: Iconic stand mixer with 10-speed control
+
+Total Nilai Inventory Seller 1: Rp 136.245.000
+Total Items: 73 units (excluding out of stock)
+
+
+================================================================================
+SELLER 2: Sarah Shop (seller2@test.com)
+Store Name: Fashion & Sports Hub
+================================================================================
+
+Produk yang Dijual (8 items):
+--------------------------------------------------------------------------------
+1. Nike Air Jordan 1 Retro High OG
+   - Harga: Rp 3.299.000
+   - Stock: 12 unit
+   - Kategori: Sneakers
+   - Deskripsi: Classic basketball sneakers with premium leather
+   
+2. Adidas Ultra Boost 23 Running Shoes
+   - Harga: Rp 2.899.000
+   - Stock: 25 unit
+   - Kategori: Sneakers
+   - Deskripsi: Responsive cushioning for energized runs
+   
+3. Ray-Ban Aviator Classic Sunglasses
+   - Harga: Rp 2.150.000
+   - Stock: 8 unit
+   - Kategori: Accessories
+   - Deskripsi: Iconic teardrop lens shape with metal frame
+   
+4. Levi's 501 Original Fit Jeans
+   - Harga: Rp 1.299.000
+   - Stock: 30 unit
+   - Kategori: Fashion
+   - Deskripsi: The original blue jean since 1873
+   
+5. Yonex Astrox 99 Pro Badminton Racket
+   - Harga: Rp 3.850.000
+   - Stock: 6 unit
+   - Kategori: Sports Equipment
+   - Deskripsi: Professional badminton racket used by world champions
+   
+6. Trek FX 3 Disc Hybrid Bike 2024
+   - Harga: Rp 12.500.000
+   - Stock: 4 unit
+   - Kategori: Cycling
+   - Deskripsi: Versatile fitness bike with disc brakes
+   
+7. Coleman Sundome 4-Person Tent
+   - Harga: Rp 1.899.000
+   - Stock: 15 unit
+   - Kategori: Camping
+   - Deskripsi: Easy setup camping tent for weekend adventures
+   
+8. IKEA POÄNG Armchair with Cushion
+   - Harga: Rp 2.499.000
+   - Stock: 0 unit (Out of Stock)
+   - Kategori: Furniture
+   - Deskripsi: Comfortable bentwood armchair with soft cushion
+
+Total Nilai Inventory Seller 2: Rp 30.395.000
+Total Items: 100 units (excluding out of stock)
+
+
+================================================================================
+SUMMARY
+================================================================================
+
+Total Sellers: 2
+Total Products: 16 items
+Total Inventory Value: Rp 166.640.000
+
+Seller Performance:
+- Mike Seller (Electronics): 8 produk, 73 units, Rp 136.245.000
+- Sarah Shop (Fashion & Sports): 8 produk, 100 units, Rp 30.395.000
+
+Kategori Produk:
+- Electronics: 6 items
+- Fashion & Footwear: 4 items  
+- Sports: 3 items
+- Home & Living: 3 items
+
+
+CATATAN PENTING
+================================================================================
+* Saat ini backend API belum memiliki endpoint CREATE PRODUCT
+* Seller belum bisa menambah produk baru via frontend
+* Assignment produk ke seller ini adalah dokumentasi saja
+* Untuk implementasi penuh, perlu:
+  1. Tambah kolom "SellerId" di tabel Products
+  2. Buat endpoint POST /api/products (seller only)
+  3. Buat halaman "Add Product" untuk seller di frontend
+  4. Update database schema untuk foreign key ke ApplicationUser
+
+
+FUTURE FEATURES (Seller Dashboard)
+================================================================================
+1. View My Products - List semua produk milik seller
+2. Add New Product - Form upload produk baru
+3. Edit Product - Update harga, stock, deskripsi
+4. Delete Product - Hapus produk yang tidak laku
+5. Sales Analytics - Statistik penjualan per produk
+6. Inventory Management - Update stock real-time
+7. Order Management - Lihat pesanan untuk produk mereka
+
+================================================================================
