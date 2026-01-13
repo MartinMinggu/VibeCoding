@@ -1,0 +1,77 @@
+@model ECommerceApp.Application.DTOs.UpdateAnnouncementDto
+@{
+    ViewData["Title"] = "Edit Announcement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4" style="max-width: 800px;">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index">Announcements</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-warning py-3">
+            <h4 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Announcement</h4>
+        </div>
+        <div class="card-body p-4">
+            <form asp-action="Edit" asp-route-id="@ViewBag.AnnouncementId" method="post">
+                <div class="mb-4">
+                    <label asp-for="Title" class="form-label fw-medium">Title <span class="text-danger">*</span></label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter announcement title" required />
+                    <span asp-validation-for="Title" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Content" class="form-label fw-medium">Content <span class="text-danger">*</span></label>
+                    <textarea asp-for="Content" class="form-control" rows="5" placeholder="Enter announcement content..." required></textarea>
+                    <span asp-validation-for="Content" class="text-danger small"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="Type" class="form-label fw-medium">Type</label>
+                        <select asp-for="Type" class="form-select" asp-items="Html.GetEnumSelectList<ECommerceApp.Domain.Entities.AnnouncementType>()"></select>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="ImageUrl" class="form-label fw-medium">Image URL</label>
+                        <input asp-for="ImageUrl" class="form-control" placeholder="https://example.com/image.jpg" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="StartDate" class="form-label fw-medium">Start Date</label>
+                        <input asp-for="StartDate" type="datetime-local" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="EndDate" class="form-label fw-medium">End Date</label>
+                        <input asp-for="EndDate" type="datetime-local" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="form-check form-switch">
+                        <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                        <label asp-for="IsActive" class="form-check-label fw-medium">Active</label>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-warning px-4">
+                        <i class="fas fa-save me-2"></i>Update Announcement
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

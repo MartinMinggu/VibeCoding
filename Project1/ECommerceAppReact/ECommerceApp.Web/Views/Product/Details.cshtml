@@ -1,0 +1,251 @@
+@model ECommerceApp.Application.DTOs.ProductDetailsDto
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+        </ol>
+    </nav>
+
+    <div class="row gx-5">
+        <!-- Image Gallery -->
+        <div class="col-md-6 mb-4">
+            <!-- Main Image -->
+            <div class="bg-light rounded-lg shadow-sm d-flex align-items-center justify-content-center mb-3" 
+                 style="height: 450px; overflow: hidden;" id="mainImageContainer">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" class="img-fluid w-100" style="object-fit: contain; max-height: 100%;" 
+                         alt="@Model.Name" id="mainImage">
+                }
+                else
+                {
+                    <i class="fas fa-box fa-5x text-secondary"></i>
+                }
+            </div>
+            <!-- Thumbnail Gallery -->
+            @if (Model.Images != null && Model.Images.Any())
+            {
+                <div class="d-flex gap-2 overflow-auto pb-2">
+                    @foreach (var img in Model.Images)
+                    {
+                        <div class="thumbnail-item border rounded p-1 cursor-pointer" 
+                             style="min-width: 80px; height: 80px; cursor: pointer;"
+                             onclick="changeMainImage('@img.ImageUrl')">
+                            <img src="@img.ImageUrl" class="img-fluid h-100 w-100" style="object-fit: cover;" alt="Thumbnail">
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-6">
+            <h1 class="display-5 fw-bold mb-2">@Model.Name</h1>
+            <div class="d-flex align-items-center mb-3">
+                <div class="text-warning me-2 small">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <span class="text-muted">(120 Reviews)</span>
+            </div>
+            <h2 class="text-primary fw-bold mb-4">Rp @Model.Price.ToString("N0")</h2>
+            
+            <p class="lead text-muted mb-4">@Model.Description</p>
+            
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="me-3 fw-bold">Availability:</span>
+                    @if(Model.Stock > 10)
+                    {
+                        <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> In Stock</span>
+                    }
+                    else if(Model.Stock > 0)
+                    {
+                        <span class="badge bg-warning text-dark"><i class="fas fa-exclamation-triangle me-1"></i> Low Stock</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i> Out of Stock</span>
+                    }
+                </div>
+                
+                @if(Model.Stock > 0 && Model.Stock <= 10)
+                {
+                    <div class="alert alert-warning py-2 px-3 mb-0">
+                        <i class="fas fa-fire me-1"></i>
+                        <strong>Hurry!</strong> Only <strong>@Model.Stock</strong> left in stock!
+                    </div>
+                }
+                else if(Model.Stock == 0)
+                {
+                    <div class="alert alert-secondary py-2 px-3 mb-0">
+                        <i class="fas fa-inbox me-1"></i>
+                        This product is currently unavailable.
+                    </div>
+                }
+            </div>
+            
+            <!-- Seller Info with Chat Button -->
+            <div class="card bg-light border-0 mb-4">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
+                             style="width: 45px; height: 45px;">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0">@Model.SellerName</h6>
+                            <small class="text-muted">Seller</small>
+                        </div>
+                    </div>
+                    <a asp-controller="Chat" asp-action="Start" 
+                       asp-route-sellerId="@Model.SellerId" asp-route-productId="@Model.Id"
+                       class="btn btn-outline-primary">
+                        <i class="fas fa-comments me-1"></i>Chat with Seller
+                    </a>
+                </div>
+            </div>
+
+            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="mb-4">
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="quantity" class="col-form-label fw-bold">Quantity:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" name="quantity" id="quantity" class="form-control" 
+                               value="1" min="1" max="@Model.Stock" style="width: 80px;">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary btn-lg px-5 shadow-md" @(Model.Stock == 0 ? "disabled" : "")>
+                            <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="border-top pt-4">
+                <div class="row text-center">
+                    <div class="col-4">
+                        <div class="p-3">
+                            <i class="fas fa-truck fa-2x text-muted mb-2"></i>
+                            <h6 class="fw-bold">Free Delivery</h6>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="p-3">
+                            <i class="fas fa-shield-alt fa-2x text-muted mb-2"></i>
+                            <h6 class="fw-bold">Secure Payment</h6>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="p-3">
+                            <i class="fas fa-undo fa-2x text-muted mb-2"></i>
+                            <h6 class="fw-bold">Free Returns</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Similar Products Section -->
+@{
+    var similarProducts = ViewBag.SimilarProducts as IEnumerable<ECommerceApp.Application.DTOs.ProductDto>;
+}
+@if (similarProducts != null && similarProducts.Any())
+{
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold">You May Also Like</h3>
+            <a asp-action="Index" asp-route-categoryId="@Model.CategoryId" class="btn btn-outline-primary btn-sm">
+                View All in @Model.CategoryName
+            </a>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            @foreach (var product in similarProducts)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 product-card">
+                        <div class="overflow-hidden bg-light" style="height: 200px; display: flex; align-items: center; justify-content: center;">
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="@product.ImageUrl" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="@product.Name">
+                            }
+                            else
+                            {
+                                <i class="fas fa-box fa-3x text-secondary"></i>
+                            }
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title text-truncate mb-2">@product.Name</h6>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="fw-bold text-primary">Rp @product.Price.ToString("N0")</span>
+                                <small class="text-muted">@product.CategoryName</small>
+                            </div>
+                            <div class="mt-auto">
+                                <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-outline-primary btn-sm w-100">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+            // Highlight active thumbnail
+            document.querySelectorAll('.thumbnail-item').forEach(el => {
+                el.classList.remove('border-primary', 'border-2');
+            });
+            event.currentTarget.classList.add('border-primary', 'border-2');
+        }
+        
+        // Track recently viewed products
+        function trackRecentlyViewed(productId) {
+            let recentlyViewed = localStorage.getItem('recentlyViewed');
+            let ids = recentlyViewed ? JSON.parse(recentlyViewed) : [];
+            
+            // Remove if already exists
+            ids = ids.filter(id => id !== productId);
+            
+            // Add to beginning
+            ids.unshift(productId);
+            
+            // Keep only last 10
+            ids = ids.slice(0, 10);
+            
+            localStorage.setItem('recentlyViewed', JSON.stringify(ids));
+        }
+        
+        // Track current product
+        trackRecentlyViewed(@Model.Id);
+    </script>
+    
+    <style>
+        .product-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        }
+    </style>
+}
