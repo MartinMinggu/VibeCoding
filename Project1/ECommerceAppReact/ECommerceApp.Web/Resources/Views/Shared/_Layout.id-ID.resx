@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Home">
+    <value>Beranda</value>
+  </data>
+  <data name="Products">
+    <value>Produk</value>
+  </data>
+  <data name="Dashboard">
+    <value>Dasbor</value>
+  </data>
+  <data name="My Products">
+    <value>Produk Saya</value>
+  </data>
+  <data name="Orders">
+    <value>Pesanan</value>
+  </data>
+  <data name="Cart">
+    <value>Keranjang</value>
+  </data>
+  <data name="My Orders">
+    <value>Pesanan Saya</value>
+  </data>
+  <data name="Privacy">
+    <value>Privasi</value>
+  </data>
+  <data name="Login">
+    <value>Masuk</value>
+  </data>
+  <data name="Register">
+    <value>Daftar</value>
+  </data>
+  <data name="Logout">
+    <value>Keluar</value>
+  </data>
+  <data name="Welcome">
+    <value>Selamat Datang</value>
+  </data>
+</root>

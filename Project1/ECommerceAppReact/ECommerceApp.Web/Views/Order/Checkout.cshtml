@@ -1,0 +1,67 @@
+@model ECommerceApp.Application.DTOs.CheckoutDto
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="mb-4">Checkout</h2>
+            <form asp-action="PlaceOrder" method="post" id="checkoutForm">
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="mb-3">Shipping Details</h4>
+                        <div class="mb-3">
+                            <label for="shippingAddress" class="form-label">Shipping Address</label>
+                            <textarea name="shippingAddress" id="shippingAddress" class="form-control" rows="3" required>@Model.ShippingAddress</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="mb-3">Payment Method</h4>
+                        <div class="form-check mb-2">
+                             <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="COD" checked>
+                             <label class="form-check-label" for="cod">
+                                Cash on Delivery (COD)
+                             </label>
+                        </div>
+                         <div class="form-check">
+                             <input class="form-check-input" type="radio" name="paymentMethod" id="bank" value="Bank Transfer">
+                             <label class="form-check-label" for="bank">
+                                Bank Transfer
+                             </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+             <div class="card shadow-sm border-0 bg-light">
+                <div class="card-body p-4">
+                    <h4 class="mb-3">Order Summary</h4>
+                    @if (Model?.CartItems != null)
+                    {
+                        foreach (var item in Model.CartItems)
+                        {
+                            <div class="d-flex justify-content-between mb-2 small">
+                                <span>@item.ProductName x @item.Quantity</span>
+                                <span>Rp @item.Subtotal.ToString("N0")</span>
+                            </div>
+                        }
+                    }
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="fs-5 fw-bold">Total</span>
+                        <span class="fs-5 fw-bold text-primary">Rp @Model?.TotalAmount.ToString("N0")</span>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" form="checkoutForm" class="btn btn-primary btn-lg shadow-md">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,228 @@
+@model IEnumerable<ECommerceApp.Application.DTOs.ProductDto>
+@{
+    ViewData["Title"] = "Home";
+    var announcements = ViewBag.Announcements as IEnumerable<ECommerceApp.Application.DTOs.AnnouncementDto>;
+}
+
+<div class="home-hero py-5 mb-5" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);">
+    <div class="container text-center py-5">
+        <h1 class="display-3 fw-bold text-white mb-3 animate__animated animate__fadeInDown">Welcome to ECommerceApp</h1>
+        <p class="lead text-white-50 mb-0 animate__animated animate__fadeInUp">Your premium shopping experience starts here.</p>
+    </div>
+</div>
+
+@if (announcements != null && announcements.Any())
+{
+    <div class="container mb-5">
+        <div class="row g-4">
+            @foreach (var announcement in announcements.Take(3))
+            {
+                var cardStyle = announcement.Type switch
+                {
+                    ECommerceApp.Domain.Entities.AnnouncementType.Promo => "border-success bg-success bg-opacity-10",
+                    ECommerceApp.Domain.Entities.AnnouncementType.Event => "border-warning bg-warning bg-opacity-10",
+                    _ => "border-info bg-info bg-opacity-10"
+                };
+                var iconClass = announcement.Type switch
+                {
+                    ECommerceApp.Domain.Entities.AnnouncementType.Promo => "fa-tags text-success",
+                    ECommerceApp.Domain.Entities.AnnouncementType.Event => "fa-calendar-star text-warning",
+                    _ => "fa-newspaper text-info"
+                };
+                <div class="col-md-4">
+                    <div class="card h-100 border-2 @cardStyle announcement-card">
+                        @if (!string.IsNullOrEmpty(announcement.ImageUrl))
+                        {
+                            <img src="@announcement.ImageUrl" class="card-img-top" alt="@announcement.Title" style="height: 150px; object-fit: cover;">
+                        }
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas @iconClass me-2"></i>
+                                <span class="badge bg-dark bg-opacity-75 rounded-pill small">@announcement.TypeName</span>
+                            </div>
+                            <h5 class="card-title fw-bold">@announcement.Title</h5>
+                            <p class="card-text text-muted small">
+                                @(announcement.Content.Length > 120 ? announcement.Content.Substring(0, 117) + "..." : announcement.Content)
+                            </p>
+                            @if (announcement.EndDate.HasValue)
+                            {
+                                <small class="text-muted d-block mb-2">
+                                    <i class="fas fa-clock me-1"></i>Until @announcement.EndDate.Value.ToString("MMM dd, yyyy")
+                                </small>
+                            }
+                            <a asp-controller="Home" asp-action="AnnouncementDetail" asp-route-id="@announcement.Id" class="btn btn-sm btn-outline-dark rounded-pill">
+                                Read More <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a asp-controller="Home" asp-action="Announcements" class="btn btn-outline-primary rounded-pill px-4">
+                <i class="fas fa-bullhorn me-2"></i>View All Announcements
+            </a>
+        </div>
+    </div>
+}
+
+<div class="container mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">@(ViewBag.HomeTitle ?? "Featured Products")</h2>
+        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary rounded-pill">View All</a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            @foreach (var product in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm product-card hover-lift">
+                        <div class="position-relative overflow-hidden">
+                            <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;">
+                            <div class="product-badge position-absolute top-0 end-0 m-2">
+                                <span class="badge bg-primary rounded-pill">@product.CategoryName</span>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column p-3" style="min-height: 220px;">
+                            <h5 class="card-title fw-bold mb-3 text-truncate" title="@product.Name">@product.Name</h5>
+                            
+                            <!-- Price (no overflow) -->
+                            <div class="mb-3" style="overflow: hidden;">
+                                <span class="fw-bold text-primary d-block text-truncate" style="font-size: 1.1rem;">@product.Price.ToString("C", new System.Globalization.CultureInfo("id-ID"))</span>
+                            </div>
+                            
+                            <!-- View Button (full width) -->
+                            <div class="d-grid mt-auto">
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary rounded-pill">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <div class="mb-3">
+                <i class="fas fa-shopping-bag fa-3x text-muted"></i>
+            </div>
+            <h4 class="text-muted">No products found.</h4>
+            <p class="text-muted-50">Please check back later for exciting new offers!</p>
+        </div>
+    }
+</div>
+
+<!-- Recently Viewed Products Section -->
+<div class="container mb-5" id="recentlyViewedSection" style="display: none;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Recently Viewed</h2>
+        <button class="btn btn-outline-secondary btn-sm" onclick="clearRecentlyViewed()">
+            <i class="fas fa-times me-1"></i>Clear History
+        </button>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="recentlyViewedGrid">
+        <!-- Products will be loaded here via JavaScript -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Load recently viewed products
+        async function loadRecentlyViewed() {
+            const recentlyViewed = localStorage.getItem('recentlyViewed');
+            if (!recentlyViewed) return;
+            
+            const ids = JSON.parse(recentlyViewed);
+            if (ids.length === 0) return;
+            
+            try {
+                const queryString = ids.map(id => `ids=${id}`).join('&');
+                const response = await fetch(`/Product/GetRecentlyViewedApi?${queryString}`);
+                const data = await response.json();
+                
+                if (data.products && data.products.length > 0) {
+                    document.getElementById('recentlyViewedSection').style.display = 'block';
+                    
+                    const grid = document.getElementById('recentlyViewedGrid');
+                    grid.innerHTML = '';
+                    
+                    data.products.forEach(product => {
+                        grid.innerHTML += `
+                            <div class="col">
+                                <div class="card h-100 border-0 shadow-sm product-card hover-lift">
+                                    <div class="position-relative overflow-hidden">
+                                        <img src="${product.imageUrl || '/images/placeholder.png'}" class="card-img-top" alt="${product.name}" style="height: 200px; object-fit: cover;">
+                                        <div class="product-badge position-absolute top-0 end-0 m-2">
+                                            <span class="badge bg-secondary rounded-pill">${product.categoryName}</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body d-flex flex-column p-4">
+                                        <h6 class="card-title fw-bold mb-2 text-truncate">${product.name}</h6>
+                                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                                            <span class="fs-5 fw-bold text-primary">Rp ${product.price.toLocaleString('id-ID')}</span>
+                                            <a href="/Product/Details/${product.id}" class="btn btn-primary btn-sm rounded-pill px-3">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading recently viewed:', error);
+            }
+        }
+        
+        // Clear recently viewed
+        function clearRecentlyViewed() {
+            localStorage.removeItem('recentlyViewed');
+            document.getElementById('recentlyViewedSection').style.display = 'none';
+        }
+        
+        // Load on page load
+        loadRecentlyViewed();
+    </script>
+}
+
+<style>
+    .product-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 1.25rem;
+    }
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important;
+    }
+    .product-card img {
+        border-radius: 1.25rem 1.25rem 0 0;
+        transition: transform 0.5s ease;
+    }
+    .product-card:hover img {
+        transform: scale(1.05);
+    }
+    .hover-lift {
+        transition: transform 0.2s ease-in-out;
+    }
+    .hover-lift:hover {
+        transform: translateY(-5px);
+    }
+    .btn-primary {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        border: none;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    }
+    .announcement-card {
+        transition: transform 0.2s ease-in-out;
+    }
+    .announcement-card:hover {
+        transform: translateY(-5px);
+    }
+</style>

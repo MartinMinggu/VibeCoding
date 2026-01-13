@@ -1,0 +1,173 @@
+// Data/ApplicationDbContext.cs
+using ECommerceApp.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+namespace ECommerceApp.Infrastructure.Data
+{
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Lookup> Lookups { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Conversation> Conversations { get; set; }
+        public DbSet<Message> Messages { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            // Configure relationships
+            builder.Entity<Product>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Product>()
+                .HasOne(p => p.Seller)
+                .WithMany(u => u.Products)
+                .HasForeignKey(p => p.SellerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<CartItem>()
+                .HasOne(ci => ci.Cart)
+                .WithMany(c => c.CartItems)
+                .HasForeignKey(ci => ci.CartId);
+
+            builder.Entity<CartItem>()
+                .HasOne(ci => ci.Product)
+                .WithMany(p => p.CartItems)
+                .HasForeignKey(ci => ci.ProductId);
+
+            builder.Entity<Order>()
+                .HasOne(o => o.User)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.UserId);
+
+            builder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems)
+                .HasForeignKey(oi => oi.OrderId);
+
+            builder.Entity<OrderItem>()
+                .HasOne(oi => oi.Product)
+                .WithMany(p => p.OrderItems)
+                .HasForeignKey(oi => oi.ProductId);
+
+            // Configure Announcement entity
+            builder.Entity<Announcement>()
+                .HasOne(a => a.CreatedBy)
+                .WithMany()
+                .HasForeignKey(a => a.CreatedById)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Configure ProductImage entity
+            builder.Entity<ProductImage>(entity =>
+            {
+                entity.ToTable("ProductGalleryImages");
+                entity.HasOne(pi => pi.Product)
+                    .WithMany(p => p.Images)
+                    .HasForeignKey(pi => pi.ProductId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+
+            // Configure Conversation entity
+            builder.Entity<Conversation>()
+                .HasOne(c => c.Buyer)
+                .WithMany()
+                .HasForeignKey(c => c.BuyerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Conversation>()
+                .HasOne(c => c.Seller)
+                .WithMany()
+                .HasForeignKey(c => c.SellerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Conversation>()
+                .HasOne(c => c.Product)
+                .WithMany()
+                .HasForeignKey(c => c.ProductId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Configure Message entity
+            builder.Entity<Message>()
+                .HasOne(m => m.Conversation)
+                .WithMany(c => c.Messages)
+                .HasForeignKey(m => m.ConversationId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany()
+                .HasForeignKey(m => m.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Seed categories
+            builder.Entity<Category>().HasData(
+                new Category { Id = 1, Name = "Electronics", Description = "Electronic devices and accessories" },
+                new Category { Id = 2, Name = "Clothing", Description = "Men and women clothing" },
+                new Category { Id = 3, Name = "Books", Description = "Books and magazines" },
+                new Category { Id = 4, Name = "Home & Garden", Description = "Home and garden products" },
+                new Category { Id = 5, Name = "Sports", Description = "Sports equipment and accessories" }
+            );
+
+            // Configure decimal precision
+            builder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasPrecision(18, 2);
+
+            builder.Entity<Order>()
+                .Property(o => o.TotalAmount)
+                .HasPrecision(18, 2);
+
+            builder.Entity<OrderItem>()
+                .Property(oi => oi.UnitPrice)
+                .HasPrecision(18, 2);
+
+            // Configure boolean properties for Oracle compatibility
+            // Oracle does not support BOOLEAN as column type, use NUMBER(1) instead
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(bool))
+                    {
+                        property.SetColumnType("NUMBER(1)");
+                    }
+                }
+            }
+
+            // Configure Lookup entity
+            builder.Entity<Lookup>()
+                .HasIndex(l => l.Key)
+                .IsUnique();
+
+            // Seed lookup data for application configuration
+            var seedDate = new DateTime(2024, 1, 1, 0, 0, 0);
+            builder.Entity<Lookup>().HasData(
+                new Lookup { Id = 1, Key = "SiteName", Value = "ECommerce Store", Description = "Application name", Category = "General", IsActive = true, CreatedAt = seedDate },
+                new Lookup { Id = 2, Key = "AdminEmail", Value = "admin@ecommerce.com", Description = "Administrator email", Category = "General", IsActive = true, CreatedAt = seedDate },
+                new Lookup { Id = 3, Key = "Currency", Value = "USD", Description = "Default currency", Category = "Payment", IsActive = true, CreatedAt = seedDate },
+                new Lookup { Id = 4, Key = "TaxRate", Value = "0.10", Description = "Tax rate (10%)", Category = "Payment", IsActive = true, CreatedAt = seedDate },
+                new Lookup { Id = 5, Key = "ShippingFee", Value = "5.00", Description = "Standard shipping fee", Category = "Shipping", IsActive = true, CreatedAt = seedDate },
+                new Lookup { Id = 6, Key = "FreeShippingThreshold", Value = "50.00", Description = "Free shipping minimum order", Category = "Shipping", IsActive = true, CreatedAt = seedDate },
+                new Lookup { Id = 7, Key = "MaxCartItems", Value = "50", Description = "Maximum items in cart", Category = "Cart", IsActive = true, CreatedAt = seedDate },
+                new Lookup { Id = 8, Key = "ProductsPerPage", Value = "12", Description = "Products displayed per page", Category = "Display", IsActive = true, CreatedAt = seedDate }
+            );
+        }
+    }
+}

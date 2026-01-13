@@ -1,0 +1,15 @@
+@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h2>@ViewData["Title"]</h2>
+            <p>You have successfully logged out of the application.</p>
+            <p><a asp-page="/Account/Login">Click here to log in again</a></p>
+        </div>
+    </div>
+</div>

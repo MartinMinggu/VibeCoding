@@ -1,0 +1,57 @@
+@model IEnumerable<ECommerceApp.Application.DTOs.ProductDto>
+
+@{
+    ViewData["Title"] = "My Products";
+}
+
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-6 fw-bold">My Products</h1>
+        <a asp-action="CreateProduct" class="btn btn-primary"><i class="fas fa-plus me-2"></i>Add Product</a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td><img src="@product.ImageUrl" class="rounded" style="width: 50px; height: 50px; object-fit: cover;" onerror="this.src='/images/placeholder.jpg'" /></td>
+                            <td>@product.Name</td>
+                            <td>@product.CategoryName</td>
+                            <td>Rp @product.Price.ToString("N0")</td>
+                            <td>@product.Stock</td>
+                            <td><span class="badge bg-@(product.IsActive ? "success" : "danger")">@(product.IsActive ? "Active" : "Inactive")</span></td>
+                            <td>@product.CreatedAt.ToString("d")</td>
+                            <td>
+                                <a asp-action="EditProduct" asp-route-id="@product.Id" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-box-open fa-4x text-muted mb-3"></i>
+            <h4 class="text-muted">No products yet</h4>
+            <a asp-action="CreateProduct" class="btn btn-primary mt-3">Create Your First Product</a>
+        </div>
+    }
+</div>
