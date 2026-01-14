@@ -1,0 +1,746 @@
+[2026-01-14 16.30.22] [868d09f1] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.30.22] [868d09f1] ✅ RESPONSE: 200 (715ms)
+
+--------------------------------------------------
+[2026-01-14 16.30.23] [cc6036e0] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.30.23] [cc6036e0] ✅ RESPONSE: 200 (42ms)
+    Body: {"products":[],"currentPage":1,"pageSize":12,"totalCount":0,"totalPages":0,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 16.30.23] [67b24fad] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.30.23] [67b24fad] ✅ RESPONSE: 200 (25ms)
+    Body: {"products":[],"currentPage":1,"pageSize":12,"totalCount":0,"totalPages":0,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 16.30.24] [f47f3d04] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.30.24] [f47f3d04] ✅ RESPONSE: 200 (56ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.30.24] [6adddfb8] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.30.24] [6adddfb8] ✅ RESPONSE: 200 (17ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.31.42] [3e88d0a9] ➡️  REQUEST: POST /api/products
+--------------------------------------------------
+[2026-01-14 16.31.42] [3e88d0a9] ✅ RESPONSE: 201 (3163ms)
+    Body: {"id":406,"name":"sdsds","description":"fghjiuyt","price":242000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Pakaian","sellerName":"You (Reload to see details)","isActive":true,"createdAt":"2026-01-14T16:31:42.5342612+07:00"}
+
+--------------------------------------------------
+[2026-01-14 16.31.48] [9372b00d] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.31.48] [9372b00d] ✅ RESPONSE: 200 (10ms)
+    Body: {"products":[],"currentPage":1,"pageSize":12,"totalCount":0,"totalPages":0,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 16.31.48] [bf95bd47] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.31.48] [bf95bd47] ✅ RESPONSE: 200 (10ms)
+    Body: {"products":[],"currentPage":1,"pageSize":12,"totalCount":0,"totalPages":0,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 16.34.08] [696cf769] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.34.08] [696cf769] ✅ RESPONSE: 200 (13ms)
+    Body: {"products":[],"currentPage":1,"pageSize":12,"totalCount":0,"totalPages":0,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 16.34.08] [8dc0c838] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.34.08] [8dc0c838] ✅ RESPONSE: 200 (7ms)
+    Body: {"products":[],"currentPage":1,"pageSize":12,"totalCount":0,"totalPages":0,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 16.42.01] [1197e69e] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.42.01] [1197e69e] ✅ RESPONSE: 200 (410ms)
+    Body: {"products":[{"id":406,"name":"sdsds","description":"fghjiuyt","price":242000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Pakaian","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:31:42.5342612"},{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":2,"totalPages":1,"hasMore":false... [truncated]
+
+--------------------------------------------------
+[2026-01-14 16.42.01] [c19f1fce] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 16.42.01] [c19f1fce] ✅ RESPONSE: 200 (28ms)
+    Body: {"products":[{"id":406,"name":"sdsds","description":"fghjiuyt","price":242000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Pakaian","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:31:42.5342612"},{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":2,"totalPages":1,"hasMore":false... [truncated]
+
+--------------------------------------------------
+[2026-01-14 16.42.02] [134ca6de] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.42.02] [134ca6de] ✅ RESPONSE: 200 (38ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.42.02] [c0993267] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.42.02] [c0993267] ✅ RESPONSE: 200 (5ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.43.46] [59d4bc40] ➡️  REQUEST: DELETE /api/products/406
+--------------------------------------------------
+[2026-01-14 16.43.46] [59d4bc40] ✅ RESPONSE: 200 (185ms)
+    Body: {"message":"Product deleted successfully"}
+
+--------------------------------------------------
+[2026-01-14 16.45.25] [6ab08ab3] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.45.25] [2522bd76] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 16.45.25] [6ab08ab3] ✅ RESPONSE: 200 (4ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.45.25] [7c1f8458] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.45.25] [7c1f8458] ✅ RESPONSE: 200 (2ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.45.25] [2522bd76] ⚠️ RESPONSE: 404 (83ms)
+    Body: {"message":"Product not found"}
+
+--------------------------------------------------
+[2026-01-14 16.45.25] [0faba15f] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 16.45.25] [0faba15f] ⚠️ RESPONSE: 404 (3ms)
+    Body: {"message":"Product not found"}
+
+--------------------------------------------------
+[2026-01-14 16.53.35] [aedd23e5] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 16.53.35] [4dda35fc] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.56.23] [8b4bea78] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 16.56.23] [fe92104e] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.56.23] [fe92104e] ✅ RESPONSE: 200 (6361ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.53.35] [4dda35fc] ✅ RESPONSE: 200 (174820ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.56.23] [8b4bea78] ⚠️ RESPONSE: 404 (44969ms)
+    Body: {"message":"Product not found"}
+
+--------------------------------------------------
+[2026-01-14 16.53.35] [aedd23e5] ⚠️ RESPONSE: 404 (213428ms)
+    Body: {"message":"Product not found"}
+
+--------------------------------------------------
+[2026-01-14 16.59.28] [88b2ee70] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.59.28] [aaf32dca] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 16.59.28] [88b2ee70] ✅ RESPONSE: 200 (3720ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.59.32] [fd758876] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 16.59.32] [fd758876] ✅ RESPONSE: 200 (21ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 16.59.28] [aaf32dca] ⚠️ RESPONSE: 404 (3883ms)
+    Body: {"message":"Product not found"}
+
+--------------------------------------------------
+[2026-01-14 16.59.32] [b96edb92] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 16.59.32] [b96edb92] ⚠️ RESPONSE: 404 (1604ms)
+    Body: {"message":"Product not found"}
+
+--------------------------------------------------
+[2026-01-14 17.02.11] [a8e1cc73] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.02.11] [5023761d] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.02.11] [a8e1cc73] ✅ RESPONSE: 200 (2758ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.02.14] [d5141e4e] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.02.14] [d5141e4e] ✅ RESPONSE: 200 (14ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.02.11] [5023761d] ✅ RESPONSE: 200 (3034ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.02.14] [c13052be] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.02.14] [c13052be] ✅ RESPONSE: 200 (1298ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.02.25] [cde310fc] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.02.25] [cde310fc] ✅ RESPONSE: 302 (15ms)
+
+--------------------------------------------------
+[2026-01-14 17.02.25] [75bbc8cc] ➡️  REQUEST: OPTIONS /Account/Login?ReturnUrl=%2Fapi%2Fproducts%2F405
+--------------------------------------------------
+[2026-01-14 17.02.25] [75bbc8cc] ✅ RESPONSE: 204 (2ms)
+
+--------------------------------------------------
+[2026-01-14 17.02.25] [6ca42206] ➡️  REQUEST: PUT /Account/Login?ReturnUrl=%2Fapi%2Fproducts%2F405
+--------------------------------------------------
+[2026-01-14 17.02.25] [6ca42206] ⚠️ RESPONSE: 404 (2ms)
+
+--------------------------------------------------
+[2026-01-14 17.02.26] [18411001] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.02.26] [18411001] ✅ RESPONSE: 302 (4ms)
+
+--------------------------------------------------
+[2026-01-14 17.02.26] [61edaf90] ➡️  REQUEST: PUT /Account/Login?ReturnUrl=%2Fapi%2Fproducts%2F405
+--------------------------------------------------
+[2026-01-14 17.02.26] [61edaf90] ⚠️ RESPONSE: 404 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.02.49] [7c1c35ea] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.02.49] [be387980] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.02.49] [44b4a091] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.02.49] [111b871a] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.02.49] [44b4a091] ✅ RESPONSE: 200 (4501ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.02.49] [7c1c35ea] ✅ RESPONSE: 200 (4522ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.02.49] [be387980] ✅ RESPONSE: 200 (4520ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.02.49] [111b871a] ✅ RESPONSE: 200 (4514ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.03.00] [2cc7b723] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.03.00] [2cc7b723] ✅ RESPONSE: 302 (3ms)
+
+--------------------------------------------------
+[2026-01-14 17.03.00] [2f914472] ➡️  REQUEST: OPTIONS /Account/Login?ReturnUrl=%2Fapi%2Fproducts%2F405
+--------------------------------------------------
+[2026-01-14 17.03.00] [2f914472] ✅ RESPONSE: 204 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.03.00] [22c3be84] ➡️  REQUEST: PUT /Account/Login?ReturnUrl=%2Fapi%2Fproducts%2F405
+--------------------------------------------------
+[2026-01-14 17.03.00] [22c3be84] ⚠️ RESPONSE: 404 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.27] [1ca16ec0] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.27] [1ca16ec0] ⚠️ RESPONSE: 401 (1916ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.31] [fe12369c] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.31] [fe12369c] ⚠️ RESPONSE: 401 (10ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.31] [e3ba4e27] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.31] [e3ba4e27] ⚠️ RESPONSE: 401 (5ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.31] [263df51d] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.31] [263df51d] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.31] [7c744444] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.31] [7c744444] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.31] [d3823478] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.31] [d3823478] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.31] [78997dca] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.31] [78997dca] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.33] [cbb0c0ea] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.06.33] [0b67c3ec] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.33] [19f26e89] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.33] [81459656] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.06.33] [81459656] ✅ RESPONSE: 200 (10121ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.06.33] [cbb0c0ea] ✅ RESPONSE: 200 (10121ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.06.33] [0b67c3ec] ✅ RESPONSE: 200 (10373ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.06.33] [19f26e89] ✅ RESPONSE: 200 (10373ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.06.46] [a01a4188] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.46] [a01a4188] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.47] [8fcfd4f9] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.47] [8fcfd4f9] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.06.48] [ce89a80a] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.06.48] [ce89a80a] ⚠️ RESPONSE: 401 (0ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.00] [f5065d02] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.00] [b56f151d] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.09.03] [118c57fd] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.03] [fe2fe70d] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.09.00] [b56f151d] ✅ RESPONSE: 200 (4655ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.03] [fe2fe70d] ✅ RESPONSE: 200 (1681ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.09.05] [6905ca1c] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.09.05] [6905ca1c] ✅ RESPONSE: 200 (23ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.09.03] [118c57fd] ✅ RESPONSE: 200 (2058ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.09.00] [f5065d02] ✅ RESPONSE: 200 (5029ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.05] [425a06ab] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.05] [425a06ab] ✅ RESPONSE: 200 (2211ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.09.12] [31884ece] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.12] [31884ece] ⚠️ RESPONSE: 401 (125ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.13] [411eb3c4] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.13] [411eb3c4] ⚠️ RESPONSE: 401 (5ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.13] [c036c15f] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.13] [c036c15f] ⚠️ RESPONSE: 401 (3ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.13] [93b8f901] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.13] [93b8f901] ⚠️ RESPONSE: 401 (2ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.13] [c572ceb6] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.13] [c572ceb6] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.13] [ba758109] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.13] [ba758109] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.14] [bb0fc71c] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.14] [bb0fc71c] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.14] [6b3f6784] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.14] [6b3f6784] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.14] [6f1bc367] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.14] [6f1bc367] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.09.14] [7f5d7dab] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.09.14] [7f5d7dab] ⚠️ RESPONSE: 401 (2ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.12] [6edd5fdf] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.12] [6edd5fdf] ⚠️ RESPONSE: 401 (7ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.13] [cc9e41fe] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.13] [cc9e41fe] ⚠️ RESPONSE: 401 (2ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.13] [8251f16a] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.13] [8251f16a] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.13] [0bf3ecfc] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.13] [0bf3ecfc] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.13] [908d5ea3] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.13] [908d5ea3] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.14] [6d239a71] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.14] [6d239a71] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.14] [00c66f68] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.14] [00c66f68] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.14] [0b3fb36f] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.14] [0b3fb36f] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.14] [ef6468a7] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.14] [ef6468a7] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.14] [2d0a9608] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.14] [2d0a9608] ⚠️ RESPONSE: 401 (2ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.15] [3cdaea30] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.15] [3cdaea30] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.15] [528af1e9] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.15] [528af1e9] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.15] [a3cefeaf] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.15] [a3cefeaf] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.15] [e869aa19] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.15] [e869aa19] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.14.15] [ccc17778] ➡️  REQUEST: PUT /api/products/405
+--------------------------------------------------
+[2026-01-14 17.14.15] [ccc17778] ⚠️ RESPONSE: 401 (7ms)
+
+--------------------------------------------------
+[2026-01-14 17.17.47] [e50ad341] ➡️  REQUEST: PUT /api/products/405
+    Auth: Bearer mock-jwt-token-4d22c86b-4879-4017-9b3c-76e1...
+--------------------------------------------------
+[2026-01-14 17.17.47] [e50ad341] ⚠️ RESPONSE: 401 (61ms)
+
+--------------------------------------------------
+[2026-01-14 17.18.27] [eca0b7a4] ➡️  REQUEST: PUT /api/products/405
+    Auth: Bearer mock-jwt-token-4d22c86b-4879-4017-9b3c-76e1...
+--------------------------------------------------
+[2026-01-14 17.18.27] [eca0b7a4] ⚠️ RESPONSE: 401 (126ms)
+
+--------------------------------------------------
+[2026-01-14 17.18.29] [49cd22df] ➡️  REQUEST: PUT /api/products/405
+    Auth: Bearer mock-jwt-token-4d22c86b-4879-4017-9b3c-76e1...
+--------------------------------------------------
+[2026-01-14 17.18.29] [49cd22df] ⚠️ RESPONSE: 401 (7ms)
+
+--------------------------------------------------
+[2026-01-14 17.18.29] [1fb4c0cc] ➡️  REQUEST: PUT /api/products/405
+    Auth: Bearer mock-jwt-token-4d22c86b-4879-4017-9b3c-76e1...
+--------------------------------------------------
+[2026-01-14 17.18.29] [1fb4c0cc] ⚠️ RESPONSE: 401 (3ms)
+
+--------------------------------------------------
+[2026-01-14 17.18.29] [6899bbff] ➡️  REQUEST: PUT /api/products/405
+    Auth: Bearer mock-jwt-token-4d22c86b-4879-4017-9b3c-76e1...
+--------------------------------------------------
+[2026-01-14 17.18.29] [6899bbff] ⚠️ RESPONSE: 401 (1ms)
+
+--------------------------------------------------
+[2026-01-14 17.20.17] [11ad1a89] ➡️  REQUEST: GET /api/products?pageSize=8
+--------------------------------------------------
+[2026-01-14 17.20.17] [11ad1a89] ✅ RESPONSE: 200 (320ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":8,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.17] [c006fe74] ➡️  REQUEST: GET /api/products?pageSize=8
+--------------------------------------------------
+[2026-01-14 17.20.17] [c006fe74] ✅ RESPONSE: 200 (26ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":8,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.21] [0445af59] ➡️  REQUEST: POST /api/auth/login
+--------------------------------------------------
+[2026-01-14 17.20.21] [0445af59] ✅ RESPONSE: 200 (237ms)
+    Body: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI2NTk5MzhhMi0zMTA5LTQ0YjItODA0YS05Y2UzZmVjNGI0MGEiLCJlbWFpbCI6ImFuZGlrYS5wZXJ0YW1heEBnbWFpbC5jb20iLCJ1bmlxdWVfbmFtZSI6ImFuZGlrYS5wZXJ0YW1heEBnbWFpbC5jb20iLCJyb2xlIjoiU2VsbGVyIiwibmJmIjoxNzY4Mzg2MDIxLCJleHAiOjE3NjgzODk2MjEsImlhdCI6MTc2ODM4NjAyMSwiaXNzIjoiRUNvbW1lcmNlQXBwLkFQSSIsImF1ZCI6IkVDb21tZXJjZUFwcC5DbGllbnQifQ.3qLMZ0uvPK3A6xhJjv_g2U1a1j1kj-QuJ6I23r1koOg","refreshToken":"4c64fa63-f7b1-4ba3-a2ff-e34a89d75511","expiration":"2026-01-14T11:20:21.9753385Z","user":{"id":"659938a2-3109-44b2-804a-9ce3fec4b40a","email":"andika.pertamax@gmail.com","firstName":"andika","lastName":"pertama","isSeller":true,"isAdmin":false,"isSuperAdmin":false,"roles":["Seller"]}}
+
+--------------------------------------------------
+[2026-01-14 17.20.22] [154e7a94] ➡️  REQUEST: GET /api/products?pageSize=8
+--------------------------------------------------
+[2026-01-14 17.20.22] [154e7a94] ✅ RESPONSE: 200 (10ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":8,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.22] [6183bb21] ➡️  REQUEST: GET /api/products?pageSize=8
+--------------------------------------------------
+[2026-01-14 17.20.22] [6183bb21] ✅ RESPONSE: 200 (7ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":8,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.23] [ed7eea28] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.20.23] [ed7eea28] ✅ RESPONSE: 200 (30ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.20.23] [cc23079c] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.20.23] [cc23079c] ✅ RESPONSE: 200 (5ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.20.27] [deb8b54b] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.20.27] [ab08e0cf] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 17.20.27] [deb8b54b] ✅ RESPONSE: 200 (7ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.20.27] [0ff14f40] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.20.27] [ab08e0cf] ✅ RESPONSE: 200 (8ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.27] [0ff14f40] ✅ RESPONSE: 200 (5ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.20.27] [24f727a1] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 17.20.27] [24f727a1] ✅ RESPONSE: 200 (5ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.31] [67eb811e] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.20.31] [67eb811e] ✅ RESPONSE: 200 (2885ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.20.34] [5c1644bc] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.20.34] [5c1644bc] ✅ RESPONSE: 200 (3447ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.20.53] [e1948388] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.20.53] [e1948388] ✅ RESPONSE: 200 (5ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.20.53] [636d92ff] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 17.20.53] [881db610] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.20.53] [636d92ff] ✅ RESPONSE: 200 (5ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.53] [881db610] ✅ RESPONSE: 200 (7ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.20.53] [39ae983e] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 17.20.53] [39ae983e] ✅ RESPONSE: 200 (13ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.58] [4de711a2] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 17.20.58] [4de711a2] ✅ RESPONSE: 200 (9ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.20.58] [dbbed4b8] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 17.20.58] [dbbed4b8] ✅ RESPONSE: 200 (6ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.21.01] [4ebfd428] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.21.01] [4a055d16] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.21.01] [4ebfd428] ✅ RESPONSE: 200 (2471ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.21.01] [4a055d16] ✅ RESPONSE: 200 (2476ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.21.03] [213a5ac6] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.21.03] [213a5ac6] ✅ RESPONSE: 200 (7ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.21.03] [b401e847] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.21.03] [b401e847] ✅ RESPONSE: 200 (1199ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.21.10] [e3bd01a8] ➡️  REQUEST: PUT /api/products/405
+    Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW...
+--------------------------------------------------
+[2026-01-14 17.21.10] [e3bd01a8] ⚠️ RESPONSE: 403 (2621ms)
+
+--------------------------------------------------
+[2026-01-14 17.21.25] [07e806b7] ➡️  REQUEST: PUT /api/products/405
+    Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW...
+--------------------------------------------------
+[2026-01-14 17.21.25] [07e806b7] ⚠️ RESPONSE: 403 (22168ms)
+
+--------------------------------------------------
+[2026-01-14 17.23.34] [64726a9a] ➡️  REQUEST: GET /api/products?pageSize=8
+--------------------------------------------------
+[2026-01-14 17.23.34] [64726a9a] ✅ RESPONSE: 200 (492ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":8,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.23.35] [3161a3c9] ➡️  REQUEST: GET /api/products?pageSize=8
+--------------------------------------------------
+[2026-01-14 17.23.35] [3161a3c9] ✅ RESPONSE: 200 (36ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":8,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.24.21] [9907c5d0] ➡️  REQUEST: POST /api/auth/login
+--------------------------------------------------
+[2026-01-14 17.24.21] [9907c5d0] ✅ RESPONSE: 200 (429ms)
+    Body: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI2NTk5MzhhMi0zMTA5LTQ0YjItODA0YS05Y2UzZmVjNGI0MGEiLCJlbWFpbCI6ImFuZGlrYS5wZXJ0YW1heEBnbWFpbC5jb20iLCJ1bmlxdWVfbmFtZSI6ImFuZGlrYS5wZXJ0YW1heEBnbWFpbC5jb20iLCJyb2xlIjoiU2VsbGVyIiwibmJmIjoxNzY4Mzg2MjYyLCJleHAiOjE3NjgzODk4NjIsImlhdCI6MTc2ODM4NjI2MiwiaXNzIjoiRUNvbW1lcmNlQXBwLkFQSSIsImF1ZCI6IkVDb21tZXJjZUFwcC5DbGllbnQifQ.BtCx24vqZqm2Ugt6n3d8hJaF5DQolXxH0KEC017GYNc","refreshToken":"94c33b64-1fc5-42cc-9f02-fe7a74822468","expiration":"2026-01-14T11:24:22.2202052Z","user":{"id":"659938a2-3109-44b2-804a-9ce3fec4b40a","email":"andika.pertamax@gmail.com","firstName":"andika","lastName":"pertama","isSeller":true,"isAdmin":false,"isSuperAdmin":false,"roles":["Seller"]}}
+
+--------------------------------------------------
+[2026-01-14 17.24.22] [df82614f] ➡️  REQUEST: GET /api/products?pageSize=8
+--------------------------------------------------
+[2026-01-14 17.24.22] [df82614f] ✅ RESPONSE: 200 (192ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":8,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.24.22] [fa74d891] ➡️  REQUEST: GET /api/products?pageSize=8
+--------------------------------------------------
+[2026-01-14 17.24.22] [fa74d891] ✅ RESPONSE: 200 (12ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":8,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.24.23] [b72217dd] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.24.23] [b72217dd] ✅ RESPONSE: 200 (30ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.24.24] [ea3d909c] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.24.24] [ea3d909c] ✅ RESPONSE: 200 (7ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.24.27] [38a874b5] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 17.24.27] [38a874b5] ✅ RESPONSE: 200 (13ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.24.27] [35f53586] ➡️  REQUEST: GET /api/products
+--------------------------------------------------
+[2026-01-14 17.24.27] [35f53586] ✅ RESPONSE: 200 (6ms)
+    Body: {"products":[{"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryName":"Sport","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212"}],"currentPage":1,"pageSize":12,"totalCount":1,"totalPages":1,"hasMore":false}
+
+--------------------------------------------------
+[2026-01-14 17.24.29] [a17e779a] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.24.29] [3d32926d] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.24.29] [3d32926d] ✅ RESPONSE: 200 (11ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.24.31] [410d5174] ➡️  REQUEST: GET /api/category
+--------------------------------------------------
+[2026-01-14 17.24.31] [410d5174] ✅ RESPONSE: 200 (742ms)
+    Body: [{"id":1,"name":"Pakaian","description":"Pelindung Badan","productCount":0},{"id":2,"name":"Sport","description":"Olaraga","productCount":0}]
+
+--------------------------------------------------
+[2026-01-14 17.24.29] [a17e779a] ✅ RESPONSE: 200 (2877ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.24.32] [035c473e] ➡️  REQUEST: GET /api/products/405
+--------------------------------------------------
+[2026-01-14 17.24.32] [035c473e] ✅ RESPONSE: 200 (1503ms)
+    Body: {"id":405,"name":"Kobe IX Elite Low EM Protro","description":"404\tKobe IX Elite Low EM Protro\tKobe IX Elite Low EM Protro\nBasketball Shoes\n\t2849000\t20\thttps://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png\tmock-seller-id\t1\t2026-01-14 16:19:52.364\t1","price":2849000,"stock":20,"imageUrl":"https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/620666cc-04d5-4819-b6e6-1624198a6daa/KOBE+IX+ELITE+LOW+EM+PROTRO.png","categoryId":2,"categoryName":"Sport","sellerId":"mock-seller-id","sellerName":"","isActive":true,"createdAt":"2026-01-14T16:27:19.6092212","images":[]}
+
+--------------------------------------------------
+[2026-01-14 17.24.38] [f3b41361] ➡️  REQUEST: PUT /api/products/405
+    Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW...
+--------------------------------------------------
+[2026-01-14 17.24.38] [f3b41361] ⚠️ RESPONSE: 403 (18287ms)
+
+--------------------------------------------------

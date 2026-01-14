@@ -1,0 +1,12 @@
+.checkout-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.checkout-items::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.checkout-items::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}

@@ -1,0 +1,22 @@
+.product-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.product-image-container img {
+    transition: transform 0.3s ease;
+}
+
+.product-image-container:hover img {
+    transform: scale(1.05);
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
+
+.input-group .btn {
+    min-width: 40px;
+}
